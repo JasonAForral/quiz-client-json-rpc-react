@@ -85,35 +85,34 @@ describe('question actions', () => {
       type: NEW_QUESTION_RESPONSE_SUCCESS,
     }
 
-    let questionAndAnswers = {
-      answers: [
-        {
+    let json = {
+      result: {
+        answers: [
+          {
+            id: 1,
+            text: 'A type of dog.',
+          },
+          {
+            id: 2,
+            text: 'Something you wear on your head.',
+          },
+          {
+            id: 3,
+            text: 'Something you eat.',
+          },
+          {
+            id: 4,
+            text: 'A type of tree.',
+          },
+        ],
+        question: {
           id: 1,
-          text: 'A type of dog.',
+          text: 'What is a hat?',
         },
-        {
-          id: 2,
-          text: 'Something you wear on your head.',
-        },
-        {
-          id: 3,
-          text: 'Something you eat.',
-        },
-        {
-          id: 4,
-          text: 'A type of tree.',
-        },
-      ],
-      question: {
-        id: 1,
-        text: 'What is a hat?',
       },
     }
 
-    let action = newQuestionResponseSuccess(
-      questionAndAnswers.question, 
-      questionAndAnswers.answers
-    )
+    let action = newQuestionResponseSuccess(json)
 
     action.timestamp = expected.timestamp
 
@@ -125,7 +124,34 @@ describe('question actions', () => {
 
     let expected = true
 
-    let action = newQuestionResponseSuccess()
+    let json = {
+      result: {
+        answers: [
+          {
+            id: 1,
+            text: 'A type of dog.',
+          },
+          {
+            id: 2,
+            text: 'Something you wear on your head.',
+          },
+          {
+            id: 3,
+            text: 'Something you eat.',
+          },
+          {
+            id: 4,
+            text: 'A type of tree.',
+          },
+        ],
+        question: {
+          id: 1,
+          text: 'What is a hat?',
+        },
+      },
+    }
+
+    let action = newQuestionResponseSuccess(json)
 
     let actual = Number.isInteger(action.timestamp)
 
