@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-//import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Question from '../components/Question'
 import Answer from '../components/Answer'
-//import * as QuestionActions from '../actions/questionActions'
+import Error from '../components/Error'
 import { fetchNewQuestion } from '../actions/questionActions'
 
 class App extends Component {
@@ -13,7 +12,6 @@ class App extends Component {
   }
   componentDidMount() {
     const { dispatch, } = this.props
-    // dispatch(QuestionActions.fetchNewQuestion())
     dispatch(fetchNewQuestion())
   }
 
@@ -25,6 +23,7 @@ class App extends Component {
         {question.answers.map(answer =>
           <Answer key={answer.id} text={answer.text} />
         )}
+        <Error text={question.error.message} />
       </div>
     )
   }
@@ -33,14 +32,5 @@ class App extends Component {
 const mapStateToProps = state => ({
   question: state.question,
 })
-
-// const mapDispatchToProps = dispatch => ({
-//     actions: bindActionCreators(QuestionActions, dispatch)
-// })
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App)
 
 export default connect(mapStateToProps)(App)

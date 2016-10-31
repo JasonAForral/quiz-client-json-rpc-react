@@ -38,5 +38,11 @@ export const fetchNewQuestion = () => dispatch => {
       method: 'POST',
     })
     .then(response => response.json())
-    .then(json => dispatch(newQuestionResponseSuccess(json)))
+    .then(json => {
+      if (json.hasOwnProperty('result')) {
+        return dispatch(newQuestionResponseSuccess(json))
+      } else if (json.hasOwnProperty('error')) {
+        return dispatch(newQuestionResponseFailure(json))
+      }
+    })
 }

@@ -6,6 +6,10 @@ import {
 
 const initialState = {
   answers: [],
+  error: {
+    code: -1,
+    message: '',
+  },
   question: {
     id: -1,
     text: '',
@@ -13,7 +17,7 @@ const initialState = {
   timestamp: 0,
 }
 
-export default function todos(state = initialState, action) {
+export default function question(state = initialState, action) {
   switch (action.type) {
     case NEW_QUESTION_REQUEST:
       return state

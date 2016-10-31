@@ -10,6 +10,10 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      error: {
+        code: -1,
+        message: '',
+      },
       question: {
         id: -1,
         text: '',
@@ -30,6 +34,10 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      error: {
+        code: -1,
+        message: '',
+      },
       question: {
         id: -1,
         text: '',
@@ -100,6 +108,10 @@ describe('question reducer', () => {
           text: 'A type of tree.',
         },
       ],
+      error: {
+        code: -1,
+        message: '',
+      },
       question: {
         id: 1,
         text: 'What is a hat?',
