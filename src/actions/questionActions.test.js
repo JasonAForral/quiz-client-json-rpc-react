@@ -13,10 +13,11 @@ describe('question actions', () => {
   it('newQuestionRequest should create an action', () => {
 
     let expected = {
+      timestamp: 1,
       type: NEW_QUESTION_REQUEST,
     }
 
-    let actual = newQuestionRequest()
+    let actual = newQuestionRequest(1)
 
     expect(actual).toEqual(expected)
   })
@@ -32,26 +33,16 @@ describe('question actions', () => {
       type: NEW_QUESTION_RESPONSE_FAILURE,
     }
 
-    let error = {
-      code: 1,
-      message: 'No Questions Exception',
+    let json = { 
+      error: {
+        code: 1,
+        message: 'No Questions Exception',
+        
+      },
+      id: 1,
     }
 
-    let action = newQuestionResponseFailure(error)
-
-    action.timestamp = expected.timestamp
-
-    let actual = action;
-    expect(actual).toEqual(expected)
-  })
-
-  it('newQuestionResponseFailure should have a timestamp', () => {
-
-    let expected = true
-
-    let action = newQuestionResponseFailure()
-
-    let actual = Number.isInteger(action.timestamp)
+    let actual = newQuestionResponseFailure(json)
 
     expect(actual).toEqual(expected)
   })
@@ -86,6 +77,7 @@ describe('question actions', () => {
     }
 
     let json = {
+      id: 1,
       result: {
         answers: [
           {
@@ -113,48 +105,9 @@ describe('question actions', () => {
     }
 
     let action = newQuestionResponseSuccess(json)
-
-    action.timestamp = expected.timestamp
 
     let actual = action;
     expect(actual).toEqual(expected)
   })
 
-  it('newQuestionResponseSuccess should have a timestamp', () => {
-
-    let expected = true
-
-    let json = {
-      result: {
-        answers: [
-          {
-            id: 1,
-            text: 'A type of dog.',
-          },
-          {
-            id: 2,
-            text: 'Something you wear on your head.',
-          },
-          {
-            id: 3,
-            text: 'Something you eat.',
-          },
-          {
-            id: 4,
-            text: 'A type of tree.',
-          },
-        ],
-        question: {
-          id: 1,
-          text: 'What is a hat?',
-        },
-      },
-    }
-
-    let action = newQuestionResponseSuccess(json)
-
-    let actual = Number.isInteger(action.timestamp)
-
-    expect(actual).toEqual(expected)
-  })
 })

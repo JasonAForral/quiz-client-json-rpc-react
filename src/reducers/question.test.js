@@ -9,6 +9,11 @@ describe('question reducer', () => {
   it('should handle initial state', () => {
 
     let expected = {
+      answers: [],
+      question: {
+        id: -1,
+        text: '',
+      },
       timestamp: 0,
     }
 
@@ -24,6 +29,11 @@ describe('question reducer', () => {
   it('should handle NEW_QUESTION_REQUEST action', () => {
 
     let expected = {
+      answers: [],
+      question: {
+        id: -1,
+        text: '',
+      },
       timestamp: 0,
     }
 
@@ -41,9 +51,14 @@ describe('question reducer', () => {
   it('should handle NEW_QUESTION_RESPONSE_FAILURE action', () => {
 
     let expected = {
+      answers: [],
       error: {
         code: 1,
         message: 'No Questions Exception',
+      },
+      question: {
+        id: -1,
+        text: '',
       },
       timestamp: 1,
     }

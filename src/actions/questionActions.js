@@ -4,31 +4,38 @@ import {
   NEW_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/questionConstants'
 
-export const newQuestionRequest = () => ({
+export const newQuestionRequest = timestamp => ({
+  timestamp,
   type: NEW_QUESTION_REQUEST,
 })
 
-export const newQuestionResponseFailure = error => ({
-  error,
+export const newQuestionResponseFailure = json => ({
+  error: json.error,
   type: NEW_QUESTION_RESPONSE_FAILURE,
-  timestamp: Date.now(),
+  timestamp: json.id,
 })
 
 export const newQuestionResponseSuccess = (json) => ({
   question: json.result.question,
   answers: json.result.answers,
   type: NEW_QUESTION_RESPONSE_SUCCESS,
-  timestamp: Date.now(),
+  timestamp: json.id,
 })
 
 export const fetchNewQuestion = () => dispatch => {
-  dispatch(newQuestionRequest())
+  let now = Date.now()
+  dispatch(newQuestionRequest(now))
   return fetch('api', {
-      method: 'POST',
+      body: {
+        id: now,
+        jsonrpc: '2.0',
+        method: 'getQuestion',
+      },
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
+      method: 'POST',
     })
     .then(response => response.json())
     .then(json => dispatch(newQuestionResponseSuccess(json)))

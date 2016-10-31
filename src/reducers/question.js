@@ -5,15 +5,18 @@ import {
 } from '../constants/questionConstants'
 
 const initialState = {
+  answers: [],
+  question: {
+    id: -1,
+    text: '',
+  },
   timestamp: 0,
 }
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case NEW_QUESTION_REQUEST:
-      return {
-        ...state,
-      }
+      return state
     case NEW_QUESTION_RESPONSE_FAILURE:
       return {
         ...state,
