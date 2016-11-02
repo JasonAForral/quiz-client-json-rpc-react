@@ -26,11 +26,11 @@ export const fetchNewQuestion = () => dispatch => {
   let now = Date.now()
   dispatch(newQuestionRequest(now))
   return fetch('api', {
-      body: {
+      body: JSON.stringify({
         id: now,
         jsonrpc: '2.0',
-        method: 'getQuestion',
-      },
+        method: 'newQuestion',
+      }),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
