@@ -8,7 +8,7 @@ class Error extends Component {
   render() {
     const { text } = this.props
     return (
-      <span>
+      <span className='errorBox'>
         <p>
           {text}
         </p>

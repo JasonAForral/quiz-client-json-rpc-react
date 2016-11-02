@@ -18,12 +18,16 @@ class App extends Component {
   render() {
     const {actions, question} = this.props
     return (
-      <div>
-        <Question text={question.question.text} />
-        {question.answers.map(answer =>
-          <Answer key={answer.id} text={answer.text} />
-        )}
-        <Error text={question.error.message} />
+      <div className='wrapper'>
+        <div className='wrapper-inner'>
+          {'' !== question.question.text ? 
+          <Question text={question.question.text} /> : ''}
+          {question.answers.map(answer =>
+            <Answer key={answer.id} text={answer.text} />
+          )}
+          {'' !== question.error.message ?
+             <Error text={question.error.message} /> : ''}
+        </div>
       </div>
     )
   }
