@@ -8,9 +8,9 @@ class Answer extends Component {
   handleClick = e => {
     const {
       name,
-      handleSubmitAnswer
+      onClick
     } = this.props
-    handleSubmitAnswer(name)
+    onClick(name)
   }
 
   render() {

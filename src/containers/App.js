@@ -37,7 +37,7 @@ class App extends Component {
             <Answer
               key={answer.id}
               name={answer.id}
-              handleSubmitAnswer={this.handleSubmitAnswer}
+              onClick={this.handleSubmitAnswer}
               text={answer.text}
             />
           )}
