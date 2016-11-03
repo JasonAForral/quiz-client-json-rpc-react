@@ -4,6 +4,7 @@ import Question from '../components/Question'
 import Answer from '../components/Answer'
 import Error from '../components/Error'
 import { fetchNewQuestion } from '../actions/questionActions'
+import { fetchAnswerQuestion } from '../actions/answerActions'
 
 class App extends Component {
   static propTypes = {
@@ -13,6 +14,13 @@ class App extends Component {
   componentDidMount() {
     const { dispatch, } = this.props
     dispatch(fetchNewQuestion())
+  }
+
+  handleSubmitAnswer = id => {
+    const {
+      dispatch,
+    } = this.props
+    dispatch(fetchAnswerQuestion(id))
   }
 
   render() {

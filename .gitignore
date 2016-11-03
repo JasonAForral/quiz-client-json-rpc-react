@@ -16,3 +16,5 @@ production
 .DS_Store
 .env
 npm-debug.log
+jsconfig.json
+
