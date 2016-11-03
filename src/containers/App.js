@@ -8,8 +8,7 @@ import { fetchAnswerQuestion } from '../actions/answerActions'
 
 class App extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired,
-    question: PropTypes.object.isRequired,
+    quiz: PropTypes.object.isRequired,
   }
   componentDidMount() {
     const { 
@@ -21,19 +20,21 @@ class App extends Component {
   handleSubmitAnswer = answerId => {
     const {
       dispatch,
-      question
+      quiz
     } = this.props
-    dispatch(fetchAnswerQuestion(question.question.id, answerId))
+    dispatch(fetchAnswerQuestion(quiz.question.id, answerId))
   }
 
   render() {
-    const {actions, question} = this.props
+    const {
+      quiz
+    } = this.props
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
-          {'' !== question.question.text ? 
-          <Question text={question.question.text} /> : ''}
-          {question.answers.map(answer =>
+          {'' !== quiz.question.text ? 
+          <Question text={quiz.question.text} /> : ''}
+          {quiz.answers.map(answer =>
             <Answer
               key={answer.id}
               name={answer.id}
@@ -41,8 +42,8 @@ class App extends Component {
               text={answer.text}
             />
           )}
-          {'' !== question.error.message ?
-             <Error text={question.error.message} /> : ''}
+          {'' !== quiz.error.message ?
+             <Error text={quiz.error.message} /> : ''}
         </div>
       </div>
     )
@@ -50,7 +51,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  question: state.question,
+  quiz: state.quiz,
 })
 
 export default connect(mapStateToProps)(App)

@@ -22,7 +22,7 @@ const initialState = {
   timestamp: 0,
 }
 
-export default function question(state = initialState, action) {
+export default function quiz(state = initialState, action) {
   switch (action.type) {
     case NEW_QUESTION_REQUEST:
       return {

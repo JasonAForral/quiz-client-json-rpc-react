@@ -1,4 +1,4 @@
-import question from './question'
+import question from './quiz'
 import {
   NEW_QUESTION_REQUEST,
   NEW_QUESTION_RESPONSE_FAILURE,
