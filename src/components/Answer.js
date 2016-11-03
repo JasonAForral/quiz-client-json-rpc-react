@@ -8,8 +8,8 @@ class Answer extends Component {
   render() {
     const { text } = this.props
     return (
-      <span>
-        <button>
+      <span className='button-wrapper'>
+        <button className='button'>
           {text}
         </button>
       </span>
