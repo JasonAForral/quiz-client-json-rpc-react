@@ -5,7 +5,8 @@ import {
 } from '../constants/answerConstants'
 
 
-export const answerQuestionRequest = timestamp => ({
+export const answerQuestionRequest = (guessId, timestamp) => ({
+  guessId,
   timestamp,
   type: ANSWER_QUESTION_REQUEST,
 })
@@ -16,15 +17,16 @@ export const answerQuestionResponseFailure = json => ({
   timestamp: json.id,
 })
 
-export const answerQuestionResponseSuccess = (json) => ({
-  answerId: json.result.answerId,
+export const answerQuestionResponseSuccess = (json, guessId) => ({
+  correctId: json.result.answerId,
+  guessIsCorrect: (json.result.answerId === guessId),
   type: ANSWER_QUESTION_RESPONSE_SUCCESS,
   timestamp: json.id,
 })
 
-export const fetchAnswerQuestion = (questionId, answerId) => dispatch => {
+export const fetchAnswerQuestion = (questionId, guessId) => dispatch => {
   let now = Date.now()
-  dispatch(answerQuestionRequest(now))
+  dispatch(answerQuestionRequest(guessId, now))
   return fetch('api', {
       body: JSON.stringify({
         id: now,
@@ -32,7 +34,7 @@ export const fetchAnswerQuestion = (questionId, answerId) => dispatch => {
         method: 'answerQuestion',
         params: {
           questionId,
-          answerId,
+          answerId: guessId,
         },
       }),
       headers: {
@@ -44,7 +46,7 @@ export const fetchAnswerQuestion = (questionId, answerId) => dispatch => {
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
-        return dispatch(answerQuestionResponseSuccess(json))
+        return dispatch(answerQuestionResponseSuccess(json, guessId))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(answerQuestionResponseFailure(json))
       }

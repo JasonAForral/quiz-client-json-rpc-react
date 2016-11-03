@@ -13,11 +13,12 @@ describe('answer actions', () => {
   it('answerQuestionRequest should create an action', () => {
 
     let expected = {
+      guessId: 2,
       timestamp: 1,
       type: ANSWER_QUESTION_REQUEST,
     }
 
-    let actual = answerQuestionRequest(1)
+    let actual = answerQuestionRequest(2, 1)
 
     expect(actual).toEqual(expected)
   })
@@ -50,7 +51,8 @@ describe('answer actions', () => {
   it('answerQuestionResponseSuccess should create an action', () => {
 
     let expected = {
-      answerId: 2,
+      correctId: 2,
+      guessIsCorrect: false,
       timestamp: 1,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
@@ -63,7 +65,9 @@ describe('answer actions', () => {
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
 
-    let action = answerQuestionResponseSuccess(json)
+    let guessId = 1
+
+    let action = answerQuestionResponseSuccess(json, guessId)
 
     let actual = action;
     expect(actual).toEqual(expected)

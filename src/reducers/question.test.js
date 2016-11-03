@@ -4,6 +4,12 @@ import {
   NEW_QUESTION_RESPONSE_FAILURE,
   NEW_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/questionConstants'
+import {
+  ANSWER_QUESTION_REQUEST,
+  ANSWER_QUESTION_RESPONSE_FAILURE,
+  ANSWER_QUESTION_RESPONSE_SUCCESS,
+} from '../constants/answerConstants'
+
 
 describe('question reducer', () => {
   it('should handle initial state', () => {
@@ -18,7 +24,7 @@ describe('question reducer', () => {
         id: -1,
         text: '',
       },
-      timestamp: 0,
+      timestamp: 0
     }
 
     let state = undefined
@@ -42,12 +48,13 @@ describe('question reducer', () => {
         id: -1,
         text: '',
       },
-      timestamp: 0,
+      timestamp: 1,
     }
 
     let state = undefined
 
     let action = {
+      timestamp: 1,
       type: NEW_QUESTION_REQUEST,
     }
 
@@ -146,6 +153,95 @@ describe('question reducer', () => {
       },
       timestamp: 1,
       type: NEW_QUESTION_RESPONSE_SUCCESS,
+    }
+
+    let actual = question(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  /********************* Answer Actions ***********************/
+
+  it('should handle ANSWER_QUESTION_REQUEST action', () => {
+
+    let expected = {
+      answers: [],
+      error: {
+        code: -1,
+        message: '',
+      },
+      guessId: 1,
+      question: {
+        id: -1,
+        text: '',
+      },
+      timestamp: 1,
+    }
+
+    let state = undefined
+
+    let action = {
+      guessId: 1,
+      timestamp: 1,
+      type: ANSWER_QUESTION_REQUEST,
+    }
+
+    let actual = question(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle ANSWER_QUESTION_RESPONSE_FAILURE action', () => {
+
+    let expected = {
+      answers: [],
+      error: {
+        code: -32602,
+        message: 'Invalid params',
+      },
+      question: {
+        id: -1,
+        text: '',
+      },
+      timestamp: 1,
+    }
+
+    let state = undefined
+
+    let action = {
+      error: {
+        code: -32602,
+        message: 'Invalid params',
+      },
+      timestamp: 1,
+      type: ANSWER_QUESTION_RESPONSE_FAILURE,
+    }
+
+    let actual = question(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle ANSWER_QUESTION_RESPONSE_SUCCESS action', () => {
+
+    let expected = {
+      correctId: 1,
+      extra: 'extra',
+      guessId: 2,
+      guessIsCorrect: false,
+      timestamp: 3,
+    }
+
+    let state = {
+      extra: 'extra',
+      guessId: 2,
+    }
+
+    let action = {
+      correctId: 1,
+      guessIsCorrect: false,
+      timestamp: 3,
+      type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
 
     let actual = question(state, action)
