@@ -5,11 +5,25 @@ class Answer extends Component {
     text: PropTypes.string.isRequired,
   }
 
+  handleClick = e => {
+    const {
+      name,
+      handleSubmitAnswer
+    } = this.props
+    handleSubmitAnswer(name)
+  }
+
   render() {
-    const { text } = this.props
+    const { 
+      text,
+      name,
+    } = this.props
     return (
       <span className='button-wrapper'>
-        <button className='button'>
+        <button 
+          className='button'
+          onClick={this.handleClick}
+        >
           {text}
         </button>
       </span>

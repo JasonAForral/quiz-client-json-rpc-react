@@ -12,15 +12,18 @@ class App extends Component {
     question: PropTypes.object.isRequired,
   }
   componentDidMount() {
-    const { dispatch, } = this.props
+    const { 
+      dispatch,
+    } = this.props
     dispatch(fetchNewQuestion())
   }
 
-  handleSubmitAnswer = id => {
+  handleSubmitAnswer = answerId => {
     const {
       dispatch,
+      question
     } = this.props
-    dispatch(fetchAnswerQuestion(id))
+    dispatch(fetchAnswerQuestion(question.question.id, answerId))
   }
 
   render() {
@@ -31,7 +34,12 @@ class App extends Component {
           {'' !== question.question.text ? 
           <Question text={question.question.text} /> : ''}
           {question.answers.map(answer =>
-            <Answer key={answer.id} text={answer.text} />
+            <Answer
+              key={answer.id}
+              name={answer.id}
+              handleSubmitAnswer={this.handleSubmitAnswer}
+              text={answer.text}
+            />
           )}
           {'' !== question.error.message ?
              <Error text={question.error.message} /> : ''}
