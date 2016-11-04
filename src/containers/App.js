@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Question from '../components/Question'
 import Answer from '../components/Answer'
 import Error from '../components/Error'
+import Solution from '../components/Solution'
+import Question from '../components/Question'
 import { fetchNewQuestion } from '../actions/questionActions'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 
@@ -40,6 +41,12 @@ class App extends Component {
               onClick={this.handleSubmitAnswer}
               text={answer.text}
             />)}
+          <Solution
+            answers={quiz.answers}
+            correctId={quiz.correctId}
+            guessChecked={quiz.guessChecked}
+            guessIsCorrect={quiz.guessIsCorrect}
+          />
           <Error error={quiz.error} />
         </div>
       </div>
