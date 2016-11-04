@@ -18,8 +18,8 @@ export const answerQuestionResponseFailure = json => ({
 })
 
 export const answerQuestionResponseSuccess = (json, guessId) => ({
-  correctId: json.result.answerId,
-  guessIsCorrect: (json.result.answerId === guessId),
+  correctId: json.result.correctId,
+  guessIsCorrect: (json.result.correctId === guessId),
   type: ANSWER_QUESTION_RESPONSE_SUCCESS,
   timestamp: json.id,
 })
@@ -34,7 +34,7 @@ export const fetchAnswerQuestion = (questionId, guessId) => dispatch => {
         method: 'answerQuestion',
         params: {
           questionId,
-          answerId: guessId,
+          guessId,
         },
       }),
       headers: {

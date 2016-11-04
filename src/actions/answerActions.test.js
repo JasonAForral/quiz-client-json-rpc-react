@@ -59,7 +59,7 @@ describe('answer actions', () => {
 
     let json = {
       result: {
-        answerId: 2,
+        correctId: 2,
       },
       id: 1,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
