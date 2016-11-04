@@ -11,15 +11,15 @@ export const newQuestionRequest = timestamp => ({
 
 export const newQuestionResponseFailure = json => ({
   error: json.error,
-  type: NEW_QUESTION_RESPONSE_FAILURE,
   timestamp: json.id,
+  type: NEW_QUESTION_RESPONSE_FAILURE,
 })
 
 export const newQuestionResponseSuccess = (json) => ({
-  question: json.result.question,
   answers: json.result.answers,
-  type: NEW_QUESTION_RESPONSE_SUCCESS,
+  question: json.result.question,
   timestamp: json.id,
+  type: NEW_QUESTION_RESPONSE_SUCCESS,
 })
 
 export const fetchNewQuestion = () => dispatch => {

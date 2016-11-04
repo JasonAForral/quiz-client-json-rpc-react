@@ -20,30 +20,27 @@ class App extends Component {
   handleSubmitAnswer = answerId => {
     const {
       dispatch,
-      quiz
+      quiz,
     } = this.props
     dispatch(fetchAnswerQuestion(quiz.question.id, answerId))
   }
 
   render() {
     const {
-      quiz
+      quiz,
     } = this.props
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
-          {'' !== quiz.question.text ? 
-          <Question text={quiz.question.text} /> : ''}
+          <Question question={quiz.question} />
           {quiz.answers.map(answer =>
             <Answer
               key={answer.id}
               name={answer.id}
               onClick={this.handleSubmitAnswer}
               text={answer.text}
-            />
-          )}
-          {'' !== quiz.error.message ?
-             <Error text={quiz.error.message} /> : ''}
+            />)}
+          <Error error={quiz.error} />
         </div>
       </div>
     )

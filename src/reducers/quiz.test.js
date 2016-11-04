@@ -16,15 +16,7 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
-      error: {
-        code: -1,
-        message: '',
-      },
-      question: {
-        id: -1,
-        text: '',
-      },
-      timestamp: 0
+      timestamp: 0,
     }
 
     let state = undefined
@@ -40,14 +32,6 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
-      error: {
-        code: -1,
-        message: '',
-      },
-      question: {
-        id: -1,
-        text: '',
-      },
       timestamp: 1,
     }
 
@@ -70,10 +54,6 @@ describe('question reducer', () => {
       error: {
         code: 1,
         message: 'No Questions Exception',
-      },
-      question: {
-        id: -1,
-        text: '',
       },
       timestamp: 1,
     }
@@ -115,10 +95,6 @@ describe('question reducer', () => {
           text: 'A type of tree.',
         },
       ],
-      error: {
-        code: -1,
-        message: '',
-      },
       question: {
         id: 1,
         text: 'What is a hat?',
@@ -166,15 +142,7 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
-      error: {
-        code: -1,
-        message: '',
-      },
       guessId: 1,
-      question: {
-        id: -1,
-        text: '',
-      },
       timestamp: 1,
     }
 
@@ -198,10 +166,6 @@ describe('question reducer', () => {
       error: {
         code: -32602,
         message: 'Invalid params',
-      },
-      question: {
-        id: -1,
-        text: '',
       },
       timestamp: 1,
     }

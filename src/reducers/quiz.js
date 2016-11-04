@@ -11,14 +11,6 @@ import {
 
 const initialState = {
   answers: [],
-  error: {
-    code: -1,
-    message: '',
-  },
-  question: {
-    id: -1,
-    text: '',
-  },
   timestamp: 0,
 }
 

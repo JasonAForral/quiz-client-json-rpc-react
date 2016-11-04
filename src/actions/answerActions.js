@@ -13,15 +13,15 @@ export const answerQuestionRequest = (guessId, timestamp) => ({
 
 export const answerQuestionResponseFailure = json => ({
   error: json.error,
-  type: ANSWER_QUESTION_RESPONSE_FAILURE,
   timestamp: json.id,
+  type: ANSWER_QUESTION_RESPONSE_FAILURE,
 })
 
 export const answerQuestionResponseSuccess = (json, guessId) => ({
   correctId: json.result.correctId,
   guessIsCorrect: (json.result.correctId === guessId),
-  type: ANSWER_QUESTION_RESPONSE_SUCCESS,
   timestamp: json.id,
+  type: ANSWER_QUESTION_RESPONSE_SUCCESS,
 })
 
 export const fetchAnswerQuestion = (questionId, guessId) => dispatch => {

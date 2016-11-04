@@ -2,15 +2,18 @@ import React, { Component, PropTypes } from 'react'
 
 class Error extends Component {
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    error: PropTypes.object.isRequired,
   }
 
   render() {
-    const { text } = this.props
+    const { error } = this.props
+    if (!error) {
+      return null
+    }
     return (
-      <span className='errorBox'>
-        <p>
-          {text}
+      <span>
+        <p className='errorBox'>
+          {error.message}
         </p>
       </span>
     )
