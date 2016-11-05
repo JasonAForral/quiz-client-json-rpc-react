@@ -9,13 +9,18 @@ import {
   ANSWER_QUESTION_RESPONSE_FAILURE,
   ANSWER_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/answerConstants'
+import {
+  NEXT_QUESTION
+} from '../constants/quizConstants'
 
 
-describe('question reducer', () => {
+describe('quiz reducer', () => {
   it('should handle initial state', () => {
 
     let expected = {
       answers: [],
+      correctCount: 0,
+      questionsDoneCount: 0,
       timestamp: 0,
     }
 
@@ -32,6 +37,8 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      correctCount: 0,
+      questionsDoneCount: 0,
       timestamp: 1,
     }
 
@@ -51,6 +58,8 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      correctCount: 0,
+      questionsDoneCount: 0,
       error: {
         code: 1,
         message: 'No Questions Exception',
@@ -95,6 +104,8 @@ describe('question reducer', () => {
           text: 'A type of tree.',
         },
       ],
+      correctCount: 0,
+      questionsDoneCount: 0,
       question: {
         id: 1,
         text: 'What is a hat?',
@@ -142,6 +153,8 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      correctCount: 0,
+      questionsDoneCount: 0,
       guessId: 1,
       timestamp: 1,
     }
@@ -163,6 +176,8 @@ describe('question reducer', () => {
 
     let expected = {
       answers: [],
+      correctCount: 0,
+      questionsDoneCount: 0,
       error: {
         code: -32602,
         message: 'Invalid params',
@@ -203,9 +218,76 @@ describe('question reducer', () => {
 
     let action = {
       correctId: 1,
-      guessIsCorrect: false,
       timestamp: 3,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
+    }
+
+    let actual = question(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle correct NEXT_QUESTION action', () => {
+
+    let expected = {
+      answers: [
+        { stuff: 'stuff'}
+      ],
+      correctCount: 6,
+      question: 'stuff',
+      questionsDoneCount: 7,
+      timestamp: 3,
+    }
+
+    let state = {
+      answers: [
+        { stuff: 'stuff'}
+      ],
+      correctCount: 5,
+      correctId: 2,
+      guessId: 2,
+      guessIsCorrect: true,
+      question: 'stuff',
+      questionsDoneCount: 6,
+    }
+
+    let action = {
+      timestamp: 3,
+      type: NEXT_QUESTION,
+    }
+
+    let actual = question(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle incorrect NEXT_QUESTION action', () => {
+
+    let expected = {
+      answers: [
+        { stuff: 'stuff'}
+      ],
+      correctCount: 0,
+      question: 'stuff',
+      questionsDoneCount: 2,
+      timestamp: 4,
+    }
+
+    let state = {
+      answers: [
+        { stuff: 'stuff'}
+      ],
+      correctCount: 0,
+      correctId: 2,
+      guessId: 3,
+      guessIsCorrect: false,
+      question: 'stuff',
+      questionsDoneCount: 1,
+    }
+
+    let action = {
+      timestamp: 4,
+      type: NEXT_QUESTION,
     }
 
     let actual = question(state, action)

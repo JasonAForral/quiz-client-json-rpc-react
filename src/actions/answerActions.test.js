@@ -52,7 +52,6 @@ describe('answer actions', () => {
 
     let expected = {
       correctId: 2,
-      guessIsCorrect: false,
       timestamp: 1,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
@@ -65,9 +64,7 @@ describe('answer actions', () => {
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
 
-    let guessId = 1
-
-    let action = answerQuestionResponseSuccess(json, guessId)
+    let action = answerQuestionResponseSuccess(json)
 
     let actual = action;
     expect(actual).toEqual(expected)

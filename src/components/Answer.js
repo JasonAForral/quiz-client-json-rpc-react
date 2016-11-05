@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react'
 class Answer extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
   }
 
   handleClick = e => {

@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Answer from '../components/Answer'
+import Counter from '../components/Counter'
 import Error from '../components/Error'
-import Solution from '../components/Solution'
+import NextQuestion from '../components/NextQuestion'
 import Question from '../components/Question'
-import { fetchNewQuestion } from '../actions/questionActions'
+import Solution from '../components/Solution'
 import { fetchAnswerQuestion } from '../actions/answerActions'
+import { fetchNewQuestion } from '../actions/questionActions'
+import { nextQuestion } from '../actions/quizActions'
 
 class App extends Component {
   static propTypes = {
@@ -26,6 +29,14 @@ class App extends Component {
     dispatch(fetchAnswerQuestion(quiz.question.id, answerId))
   }
 
+  handleNextQuestion = () => {
+    const {
+      dispatch,
+    } = this.props
+    dispatch(nextQuestion())
+    dispatch(fetchNewQuestion())
+  }
+
   render() {
     const {
       quiz,
@@ -33,6 +44,10 @@ class App extends Component {
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
+          <Counter
+            correctCount={quiz.correctCount}
+            questionsDoneCount={quiz.questionsDoneCount}
+          />
           <Question question={quiz.question} />
           {quiz.answers.map(answer =>
             <Answer
@@ -46,6 +61,7 @@ class App extends Component {
             correctId={quiz.correctId}
             guessChecked={quiz.guessChecked}
             guessIsCorrect={quiz.guessIsCorrect}
+            onClick={this.handleNextQuestion}
           />
           <Error error={quiz.error} />
         </div>

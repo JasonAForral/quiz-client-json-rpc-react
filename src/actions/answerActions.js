@@ -17,9 +17,9 @@ export const answerQuestionResponseFailure = json => ({
   type: ANSWER_QUESTION_RESPONSE_FAILURE,
 })
 
-export const answerQuestionResponseSuccess = (json, guessId) => ({
+export const answerQuestionResponseSuccess = json => ({
   correctId: json.result.correctId,
-  guessIsCorrect: (json.result.correctId === guessId),
+  //guessIsCorrect: (json.result.correctId === guessId),
   timestamp: json.id,
   type: ANSWER_QUESTION_RESPONSE_SUCCESS,
 })
@@ -46,7 +46,7 @@ export const fetchAnswerQuestion = (questionId, guessId) => dispatch => {
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
-        return dispatch(answerQuestionResponseSuccess(json, guessId))
+        return dispatch(answerQuestionResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(answerQuestionResponseFailure(json))
       }

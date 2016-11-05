@@ -9,12 +9,12 @@ body {
 
 .wrapper {
   padding: 60px 0;
-  margin: 0 auto;
 }
 
 .wrapper-inner {
   padding: 0 5vw;
   max-width: 1280px;
+  margin: 0 auto;
 }
 
 .button {
@@ -34,6 +34,10 @@ body {
 .errorBox {
   border: 1px solid #ffcccc;
   border-radius: 3px;
+}
+
+.counter {
+  margin: 0px auto;
 }
 
 @media (max-width: 480px) {
