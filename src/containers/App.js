@@ -32,8 +32,9 @@ class App extends Component {
   handleNextQuestion = () => {
     const {
       dispatch,
+      quiz,
     } = this.props
-    dispatch(nextQuestion())
+    dispatch(nextQuestion(quiz))
     dispatch(fetchNewQuestion())
   }
 
@@ -41,6 +42,7 @@ class App extends Component {
     const {
       quiz,
     } = this.props
+    const disabled = undefined !== quiz.guessId
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
@@ -55,6 +57,7 @@ class App extends Component {
               name={answer.id}
               onClick={this.handleSubmitAnswer}
               text={answer.text}
+              disabled={disabled}
             />)}
           <Solution
             answers={quiz.answers}

@@ -6,15 +6,41 @@ import {
 } from './quizActions'
 
 
-describe('question actions', () => {
+describe('quiz actions', () => {
   it('nextQuestion should create an action', () => {
 
     let expected = {
-      timestamp: 1,
+      correctCount: 4,
+      questionsDoneCount: 5,
       type: NEXT_QUESTION,
     }
 
-    let actual = nextQuestion(1)
+    let oldState = {
+      correctCount: 3,
+      questionsDoneCount: 4,
+      guessIsCorrect: true, 
+    }
+
+    let actual = nextQuestion(oldState)
+
+    expect(actual).toEqual(expected)
+  })
+
+    it('nextQuestion should create an action wrong', () => {
+
+    let expected = {
+      correctCount: 3,
+      questionsDoneCount: 5,
+      type: NEXT_QUESTION,
+    }
+
+    let oldState = {
+      correctCount: 3,
+      questionsDoneCount: 4,
+      guessIsCorrect: false, 
+    }
+
+    let actual = nextQuestion(oldState)
 
     expect(actual).toEqual(expected)
   })

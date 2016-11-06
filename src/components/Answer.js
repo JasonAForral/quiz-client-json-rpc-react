@@ -16,13 +16,15 @@ class Answer extends Component {
 
   render() {
     const { 
-      text,
+      disabled,
       name,
+      text,
     } = this.props
     return (
       <span className='button-wrapper'>
         <button 
           className='button'
+          disabled={disabled}
           onClick={this.handleClick}
         >
           {text}

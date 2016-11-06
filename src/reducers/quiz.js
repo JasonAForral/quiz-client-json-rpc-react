@@ -37,7 +37,7 @@ export default function quiz(state = initialState, action) {
       return {
         ...state,
         correctId: action.correctId,
-        guessIsCorrect: (action.correctId === state.guessId),
+        guessIsCorrect: action.guessIsCorrect,
         timestamp: action.timestamp,
       }
     case NEW_QUESTION_REQUEST:

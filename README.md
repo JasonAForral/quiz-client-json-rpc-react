@@ -18,4 +18,8 @@ docker-compose run web npm test
 - [x] Set up React with Redux
 - [x] Set up unit tests
 - [x] Write components for Questions, Answers
-- [x] JSON-RPC to database 
+- [x] JSON-RPC to request question from database
+- [x] JSON-RPC to request correct answer from database
+- [x] check if guess matches correct answer
+- [x] keep track of record
+- [ ] keep track of streak

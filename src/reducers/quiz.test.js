@@ -218,6 +218,7 @@ describe('quiz reducer', () => {
 
     let action = {
       correctId: 1,
+      guessIsCorrect: false,
       timestamp: 3,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
