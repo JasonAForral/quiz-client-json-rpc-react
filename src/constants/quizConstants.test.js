@@ -1,13 +1,13 @@
 import {
-  NEXT_QUESTION,
+  UPDATE_COUNTER,
 } from './quizConstants'
 
 describe('question constants', () => {
-  it('NEXT_QUESTION should not be undefined', () => {
+  it('UPDATE_COUNTER should not be undefined', () => {
 
     let expected = true
 
-    let actual = undefined !== NEXT_QUESTION
+    let actual = undefined !== UPDATE_COUNTER
 
     expect(actual).toEqual(expected)
   })

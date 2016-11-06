@@ -6,7 +6,7 @@ import QuestionForm from '../components/QuestionForm'
 import Solution from '../components/Solution'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
-import { nextQuestion } from '../actions/quizActions'
+import { updateCounter } from '../actions/quizActions'
 
 class App extends Component {
   static propTypes = {
@@ -22,7 +22,6 @@ class App extends Component {
   handleSubmitAnswer = (questionId, guessId) => {
     const {
       dispatch,
-      quiz,
     } = this.props
     dispatch(fetchAnswerQuestion(questionId, guessId))
   }
@@ -32,7 +31,7 @@ class App extends Component {
       dispatch,
       quiz,
     } = this.props
-    dispatch(nextQuestion(quiz))
+    dispatch(updateCounter(quiz))
     dispatch(fetchNewQuestion())
   }
 

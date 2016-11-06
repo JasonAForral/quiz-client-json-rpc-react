@@ -8,6 +8,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+[type=checkbox], [type=radio] {
+    margin: 5px;
+}
+
 .wrapper {
   padding: 60px 0;
 }
@@ -40,7 +44,7 @@ body {
 
 .answer-wrapper {
   margin: 0 auto;
-  padding: 5px 0;
+  padding: 10px 0;
   text-align: left;
 }
 

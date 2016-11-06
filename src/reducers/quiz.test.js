@@ -1,4 +1,4 @@
-import question from './quiz'
+import quiz from './quiz'
 import {
   NEW_QUESTION_REQUEST,
   NEW_QUESTION_RESPONSE_FAILURE,
@@ -10,7 +10,7 @@ import {
   ANSWER_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/answerConstants'
 import {
-  NEXT_QUESTION
+  UPDATE_COUNTER
 } from '../constants/quizConstants'
 
 
@@ -28,7 +28,7 @@ describe('quiz reducer', () => {
 
     let action = {}
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -42,14 +42,24 @@ describe('quiz reducer', () => {
       timestamp: 1,
     }
 
-    let state = undefined
+    let state = {
+      answers: [
+        'old stuff',
+      ],
+      correctCount: 0,
+      question: 'old stuff',
+      questionsDoneCount: 0,
+      correctId: 'old stuff',
+      guessid: 'old stuff',
+      guessIsCorrect: 'old stuff',
+    }
 
     let action = {
       timestamp: 1,
       type: NEW_QUESTION_REQUEST,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -78,7 +88,7 @@ describe('quiz reducer', () => {
       type: NEW_QUESTION_RESPONSE_FAILURE,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -104,8 +114,6 @@ describe('quiz reducer', () => {
           text: 'A type of tree.',
         },
       ],
-      correctCount: 0,
-      questionsDoneCount: 0,
       question: {
         id: 1,
         text: 'What is a hat?',
@@ -113,7 +121,11 @@ describe('quiz reducer', () => {
       timestamp: 1,
     }
 
-    let state = undefined
+    let state = {
+      correctId: 2,
+      guessId: 2,
+      guessIsCorrect: true,
+    }
 
     let action = {
       answers: [
@@ -142,7 +154,7 @@ describe('quiz reducer', () => {
       type: NEW_QUESTION_RESPONSE_SUCCESS,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -167,7 +179,7 @@ describe('quiz reducer', () => {
       type: ANSWER_QUESTION_REQUEST,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -196,7 +208,7 @@ describe('quiz reducer', () => {
       type: ANSWER_QUESTION_RESPONSE_FAILURE,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
@@ -223,75 +235,55 @@ describe('quiz reducer', () => {
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
 
-  it('should handle correct NEXT_QUESTION action', () => {
+  /*************************** counter */
+
+  it('should handle correct UPDATE_COUNTER action', () => {
 
     let expected = {
-      answers: [
-        { stuff: 'stuff'}
-      ],
-      correctCount: 6,
-      question: 'stuff',
-      questionsDoneCount: 7,
-      timestamp: 3,
-    }
-
-    let state = {
-      answers: [
-        { stuff: 'stuff'}
-      ],
       correctCount: 5,
-      correctId: 2,
-      guessId: 2,
-      guessIsCorrect: true,
-      question: 'stuff',
       questionsDoneCount: 6,
     }
 
-    let action = {
-      timestamp: 3,
-      type: NEXT_QUESTION,
+    let state = {
+      correctCount: 4,
+      questionsDoneCount: 5,
     }
 
-    let actual = question(state, action)
+    let action = {
+      correctCount: 5,
+      questionsDoneCount: 6,
+      type: UPDATE_COUNTER,
+    }
+
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })
 
-  it('should handle incorrect NEXT_QUESTION action', () => {
+  it('should handle incorrect UPDATE_COUNTER action', () => {
 
     let expected = {
-      answers: [
-        { stuff: 'stuff'}
-      ],
       correctCount: 0,
-      question: 'stuff',
       questionsDoneCount: 2,
-      timestamp: 4,
     }
 
     let state = {
-      answers: [
-        { stuff: 'stuff'}
-      ],
       correctCount: 0,
-      correctId: 2,
-      guessId: 3,
-      guessIsCorrect: false,
-      question: 'stuff',
       questionsDoneCount: 1,
     }
 
     let action = {
-      timestamp: 4,
-      type: NEXT_QUESTION,
+      correctCount: 0,
+      questionsDoneCount: 2,
+      type: UPDATE_COUNTER,
     }
 
-    let actual = question(state, action)
+    let actual = quiz(state, action)
 
     expect(actual).toEqual(expected)
   })

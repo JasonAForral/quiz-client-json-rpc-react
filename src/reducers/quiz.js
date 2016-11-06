@@ -9,7 +9,7 @@ import {
   ANSWER_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/answerConstants'
 import {
-  NEXT_QUESTION,
+  UPDATE_COUNTER,
 } from '../constants/quizConstants'
 
 const initialState = {
@@ -43,6 +43,11 @@ export default function quiz(state = initialState, action) {
     case NEW_QUESTION_REQUEST:
       return {
         ...state,
+        answers: [],
+        correctId: undefined,
+        guessid: undefined,
+        guessIsCorrect: undefined,
+        question: undefined,
         timestamp: action.timestamp,
       }
     case NEW_QUESTION_RESPONSE_FAILURE:
@@ -55,19 +60,17 @@ export default function quiz(state = initialState, action) {
       return {
         ...state,
         answers: action.answers,
-        question: action.question,
-        timestamp: action.timestamp,
-      }
-    case NEXT_QUESTION:
-    const correctCount = state.correctCount + (state.guessIsCorrect ? 1: 0)
-      return {
-        ...state,
-        correctCount, 
         correctId: undefined,
         guessId: undefined,
         guessIsCorrect: undefined,
-        questionsDoneCount: state.questionsDoneCount + 1,
+        question: action.question,
         timestamp: action.timestamp,
+      }
+    case UPDATE_COUNTER:
+      return {
+        ...state,
+        correctCount: action.correctCount, 
+        questionsDoneCount: action.questionsDoneCount,
       }
     default:
       return state

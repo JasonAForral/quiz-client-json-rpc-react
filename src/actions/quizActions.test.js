@@ -1,18 +1,18 @@
 import {
-  NEXT_QUESTION,
+  UPDATE_COUNTER,
 } from '../constants/quizConstants'
 import {
-  nextQuestion,
+  updateCounter,
 } from './quizActions'
 
 
 describe('quiz actions', () => {
-  it('nextQuestion should create an action', () => {
+  it('updateCounter should create an action', () => {
 
     let expected = {
       correctCount: 4,
       questionsDoneCount: 5,
-      type: NEXT_QUESTION,
+      type: UPDATE_COUNTER,
     }
 
     let oldState = {
@@ -21,17 +21,17 @@ describe('quiz actions', () => {
       guessIsCorrect: true, 
     }
 
-    let actual = nextQuestion(oldState)
+    let actual = updateCounter(oldState)
 
     expect(actual).toEqual(expected)
   })
 
-    it('nextQuestion should create an action wrong', () => {
+    it('updateCounter should create an action wrong', () => {
 
     let expected = {
       correctCount: 3,
       questionsDoneCount: 5,
-      type: NEXT_QUESTION,
+      type: UPDATE_COUNTER,
     }
 
     let oldState = {
@@ -40,7 +40,7 @@ describe('quiz actions', () => {
       guessIsCorrect: false, 
     }
 
-    let actual = nextQuestion(oldState)
+    let actual = updateCounter(oldState)
 
     expect(actual).toEqual(expected)
   })
