@@ -1,8 +1,9 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway');
 
 body {
-  margin: 0;
-  padding: 0;
+  /*margin: 0;
+  padding: 0;*/
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
@@ -29,6 +30,18 @@ body {
 .button:active {
   background: #ffffff;
   border-style: inset;
+}
+
+.answer-list {
+  display: inline-block;
+  list-style: none;
+  padding-left: 0;
+}
+
+.answer-wrapper {
+  margin: 0 auto;
+  padding: 5px 0;
+  text-align: left;
 }
 
 .errorBox {

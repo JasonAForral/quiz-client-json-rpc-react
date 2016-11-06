@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Answer from '../components/Answer'
 import Counter from '../components/Counter'
 import Error from '../components/Error'
-import NextQuestion from '../components/NextQuestion'
-import Question from '../components/Question'
+import QuestionForm from '../components/QuestionForm'
 import Solution from '../components/Solution'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
@@ -21,12 +19,12 @@ class App extends Component {
     dispatch(fetchNewQuestion())
   }
 
-  handleSubmitAnswer = answerId => {
+  handleSubmitAnswer = (questionId, guessId) => {
     const {
       dispatch,
       quiz,
     } = this.props
-    dispatch(fetchAnswerQuestion(quiz.question.id, answerId))
+    dispatch(fetchAnswerQuestion(questionId, guessId))
   }
 
   handleNextQuestion = () => {
@@ -42,7 +40,6 @@ class App extends Component {
     const {
       quiz,
     } = this.props
-    const disabled = undefined !== quiz.guessId
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
@@ -50,15 +47,12 @@ class App extends Component {
             correctCount={quiz.correctCount}
             questionsDoneCount={quiz.questionsDoneCount}
           />
-          <Question question={quiz.question} />
-          {quiz.answers.map(answer =>
-            <Answer
-              key={answer.id}
-              name={answer.id}
-              onClick={this.handleSubmitAnswer}
-              text={answer.text}
-              disabled={disabled}
-            />)}
+          <QuestionForm
+            answers={quiz.answers}
+            guessId={quiz.guessId}
+            onSubmit={this.handleSubmitAnswer}
+            question={quiz.question}
+          />
           <Solution
             answers={quiz.answers}
             correctId={quiz.correctId}

@@ -2,34 +2,41 @@ import React, { Component, PropTypes } from 'react'
 
 class Answer extends Component {
   static propTypes = {
+    disabled: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.number.isRequired,
   }
 
   handleClick = e => {
     const {
-      name,
-      onClick
+      onChange,
+      value,
     } = this.props
-    onClick(name)
+    onChange(value)
   }
-
   render() {
     const { 
       disabled,
-      name,
+      onChange,
       text,
+      value,
     } = this.props
     return (
-      <span className='button-wrapper'>
-        <button 
-          className='button'
+      <li className='answer-wrapper'>
+      <label>
+        <input 
+          className='radio-button'
+          id={value}
           disabled={disabled}
-          onClick={this.handleClick}
-        >
+          name='answer'
+          onChange={this.handleClick}
+          type='radio'
+          value={value}
+        />
           {text}
-        </button>
-      </span>
+        </label>
+      </li>
     )
   }
 }

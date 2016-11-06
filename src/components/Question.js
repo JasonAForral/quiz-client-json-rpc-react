@@ -2,18 +2,15 @@ import React, { Component, PropTypes } from 'react'
 
 class Question extends Component {
   static propTypes = {
-    question: PropTypes.object.isRequired,
+    text: PropTypes.string.isRequired,
   }
 
   render() {
-    const { question } = this.props
-    if (!question) {
-      return null
-    }
+    const { text } = this.props
     return (
       <span>
         <p>
-          {question.text}
+          {text}
         </p>
       </span>
     )
