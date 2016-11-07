@@ -33,6 +33,7 @@ class QuestionForm extends Component {
       return false
     }
     onSubmit(question.id, guessId)
+    this.setState({guessId: -1})
     return false
   }
 

@@ -6,7 +6,6 @@ import QuestionForm from '../components/QuestionForm'
 import Solution from '../components/Solution'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
-import { updateCounter } from '../actions/quizActions'
 
 class App extends Component {
   static propTypes = {
@@ -22,8 +21,14 @@ class App extends Component {
   handleSubmitAnswer = (questionId, guessId) => {
     const {
       dispatch,
+      quiz,
     } = this.props
-    dispatch(fetchAnswerQuestion(questionId, guessId))
+    const {
+      correctCount,
+      doneCount,
+    } = quiz
+    console.log(doneCount)
+    dispatch(fetchAnswerQuestion(questionId, guessId, correctCount, doneCount))
   }
 
   handleNextQuestion = () => {
@@ -31,7 +36,6 @@ class App extends Component {
       dispatch,
       quiz,
     } = this.props
-    dispatch(updateCounter(quiz))
     dispatch(fetchNewQuestion())
   }
 
@@ -44,7 +48,7 @@ class App extends Component {
         <div className='wrapper-inner'>
           <Counter
             correctCount={quiz.correctCount}
-            questionsDoneCount={quiz.questionsDoneCount}
+            doneCount={quiz.doneCount}
           />
           <QuestionForm
             answers={quiz.answers}

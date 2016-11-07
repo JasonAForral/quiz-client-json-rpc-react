@@ -9,9 +9,6 @@ import {
   ANSWER_QUESTION_RESPONSE_FAILURE,
   ANSWER_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/answerConstants'
-import {
-  UPDATE_COUNTER
-} from '../constants/quizConstants'
 
 
 describe('quiz reducer', () => {
@@ -20,7 +17,7 @@ describe('quiz reducer', () => {
     let expected = {
       answers: [],
       correctCount: 0,
-      questionsDoneCount: 0,
+      doneCount: 0,
       timestamp: 0,
     }
 
@@ -38,7 +35,7 @@ describe('quiz reducer', () => {
     let expected = {
       answers: [],
       correctCount: 0,
-      questionsDoneCount: 0,
+      doneCount: 0,
       timestamp: 1,
     }
 
@@ -48,7 +45,7 @@ describe('quiz reducer', () => {
       ],
       correctCount: 0,
       question: 'old stuff',
-      questionsDoneCount: 0,
+      doneCount: 0,
       correctId: 'old stuff',
       guessid: 'old stuff',
       guessIsCorrect: 'old stuff',
@@ -69,7 +66,7 @@ describe('quiz reducer', () => {
     let expected = {
       answers: [],
       correctCount: 0,
-      questionsDoneCount: 0,
+      doneCount: 0,
       error: {
         code: 1,
         message: 'No Questions Exception',
@@ -166,7 +163,7 @@ describe('quiz reducer', () => {
     let expected = {
       answers: [],
       correctCount: 0,
-      questionsDoneCount: 0,
+      doneCount: 0,
       guessId: 1,
       timestamp: 1,
     }
@@ -189,7 +186,7 @@ describe('quiz reducer', () => {
     let expected = {
       answers: [],
       correctCount: 0,
-      questionsDoneCount: 0,
+      doneCount: 0,
       error: {
         code: -32602,
         message: 'Invalid params',
@@ -216,71 +213,28 @@ describe('quiz reducer', () => {
   it('should handle ANSWER_QUESTION_RESPONSE_SUCCESS action', () => {
 
     let expected = {
-      correctId: 1,
-      extra: 'extra',
-      guessId: 2,
-      guessIsCorrect: false,
-      timestamp: 3,
-    }
-
-    let state = {
-      extra: 'extra',
-      guessId: 2,
-    }
-
-    let action = {
-      correctId: 1,
-      guessIsCorrect: false,
-      timestamp: 3,
-      type: ANSWER_QUESTION_RESPONSE_SUCCESS,
-    }
-
-    let actual = quiz(state, action)
-
-    expect(actual).toEqual(expected)
-  })
-
-  /*************************** counter */
-
-  it('should handle correct UPDATE_COUNTER action', () => {
-
-    let expected = {
-      correctCount: 5,
-      questionsDoneCount: 6,
-    }
-
-    let state = {
       correctCount: 4,
-      questionsDoneCount: 5,
-    }
-
-    let action = {
-      correctCount: 5,
-      questionsDoneCount: 6,
-      type: UPDATE_COUNTER,
-    }
-
-    let actual = quiz(state, action)
-
-    expect(actual).toEqual(expected)
-  })
-
-  it('should handle incorrect UPDATE_COUNTER action', () => {
-
-    let expected = {
-      correctCount: 0,
-      questionsDoneCount: 2,
+      correctId: 1,
+      doneCount: 5,
+      extra: 'extra',
+      guessId: 2,
+      guessIsCorrect: false,
+      timestamp: 3,
     }
 
     let state = {
-      correctCount: 0,
-      questionsDoneCount: 1,
+      extra: 'extra',
+      guessId: 2,
     }
 
     let action = {
-      correctCount: 0,
-      questionsDoneCount: 2,
-      type: UPDATE_COUNTER,
+      correctCount: 4,
+      correctId: 1,
+      doneCount: 5,
+      guessIsCorrect: false,
+      timestamp: 3,
+
+      type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
 
     let actual = quiz(state, action)

@@ -51,9 +51,10 @@ describe('answer actions', () => {
   it('answerQuestionResponseSuccess should create an action', () => {
 
     let expected = {
+      correctCount: 4,
       correctId: 2,
-      guessId: 3,
       guessIsCorrect: false,
+      doneCount: 6,
       timestamp: 1,
       type: ANSWER_QUESTION_RESPONSE_SUCCESS,
     }
@@ -68,7 +69,10 @@ describe('answer actions', () => {
 
     let guessId = 3
 
-    let action = answerQuestionResponseSuccess(json, guessId)
+    let correctCount = 4
+    let doneCount = 5
+
+    let action = answerQuestionResponseSuccess(json, guessId, correctCount, doneCount)
 
     let actual = action;
     expect(actual).toEqual(expected)

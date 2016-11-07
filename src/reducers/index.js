@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import quiz from './quiz'
 
 const rootReducer = combineReducers({
-  quiz
+  quiz,
 })
 
 export default rootReducer
