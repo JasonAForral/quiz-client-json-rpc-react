@@ -27,7 +27,6 @@ class App extends Component {
       correctCount,
       doneCount,
     } = quiz
-    console.log(doneCount)
     dispatch(fetchAnswerQuestion(questionId, guessId, correctCount, doneCount))
   }
 
@@ -43,27 +42,44 @@ class App extends Component {
     const {
       quiz,
     } = this.props
+
+    const {
+      answers,
+      correctCount,
+      correctId,
+      doneCount,
+      error,
+      guessId,
+      guessIsCorrect,
+      question,
+    } = quiz
+    
+    const checked = undefined !== correctId
+    const submitFunction = (checked ? this.handleNextQuestion : this.handleSubmitAnswer)
+    const submitText = (checked ? 'Next Question' : 'Submit')
+
     return (
       <div className='wrapper'>
         <div className='wrapper-inner'>
           <Counter
-            correctCount={quiz.correctCount}
-            doneCount={quiz.doneCount}
+            correctCount={correctCount}
+            doneCount={doneCount}
           />
           <QuestionForm
-            answers={quiz.answers}
-            guessId={quiz.guessId}
-            onSubmit={this.handleSubmitAnswer}
-            question={quiz.question}
+            answers={answers}
+            correctId={correctId}
+            guessId={guessId}
+            onSubmit={submitFunction}
+            question={question}
+            submitText={submitText}
           />
           <Solution
-            answers={quiz.answers}
-            correctId={quiz.correctId}
-            guessChecked={quiz.guessChecked}
-            guessIsCorrect={quiz.guessIsCorrect}
+            answers={answers}
+            correctId={correctId}
+            guessIsCorrect={guessIsCorrect}
             onClick={this.handleNextQuestion}
           />
-          <Error error={quiz.error} />
+          <Error error={error} />
         </div>
       </div>
     )

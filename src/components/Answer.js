@@ -16,14 +16,21 @@ class Answer extends Component {
     onChange(value)
   }
   render() {
-    const { 
+    const {
+      correctId,
       disabled,
+      guessId,
       onChange,
       text,
       value,
     } = this.props
+
+    const incorrect = ((undefined !== correctId && value === guessId) ? ' incorrect-answer' : '')
+    
+    const correct = (value === correctId ? ' correct-answer' : '')
+    
     return (
-      <li className='answer-wrapper'>
+      <li className={'answer-wrapper' + incorrect + correct}>
       <label>
         <input 
           className='radio-button'

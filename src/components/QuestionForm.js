@@ -5,8 +5,10 @@ import Question from './Question'
 class QuestionForm extends Component {
   static propTypes = {
     answer: PropTypes.object.isRequired,
+    correctId: PropTypes.number.isRequired,
     guessId: PropTypes.number.isRequired,
     question: PropTypes.object.isRequired,
+    submitText: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -23,13 +25,14 @@ class QuestionForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const {
+      correctId,
       onSubmit,
       question,
     } = this.props
     const {
       guessId
     } = this.state
-    if (-1 === guessId) {
+    if (-1 === guessId && undefined === correctId) {
       return false
     }
     onSubmit(question.id, guessId)
@@ -40,8 +43,10 @@ class QuestionForm extends Component {
   render() {
     const {
       answers,
+      correctId,
       guessId,
       question,
+      submitText,
     } = this.props
     if (!question) {
       return null
@@ -55,7 +60,9 @@ class QuestionForm extends Component {
           {answers.map(answer =>
             <Answer
               key={answer.id}
+              correctId={correctId}
               disabled={disabled}
+              guessId={guessId}
               onChange={this.handleChange}
               text={answer.text}
               value={answer.id}
@@ -64,9 +71,8 @@ class QuestionForm extends Component {
         </div>
         <input
           className='button'
-          disabled={disabled}
           type='submit'
-          value='Submit'
+          value={submitText}
         />
       </form>
     )
