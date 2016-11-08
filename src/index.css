@@ -23,7 +23,7 @@ body {
 }
 
 .button {
-  background: #fafafa;
+  background: #f4f4f4;
   border: 1px outset #ccc;
   border-radius: 5px;
   cursor: pointer;
@@ -42,10 +42,20 @@ body {
   padding-left: 0;
 }
 
-.answer-wrapper {
+.answer-label {
   border-radius: 50px;
+  display: inline-block;
+  padding: 15px;
+  width: 100%;
+  transition-duration: 0.5s;
+}
+
+.answer-label:hover {
+  background: #f4f4f4;
+}
+
+.answer-wrapper {
   margin: 5px auto;
-  padding: 5px;
   text-align: left;
 }
 
@@ -64,11 +74,4 @@ body {
 
 .counter {
   margin: 5px auto;
-}
-
-@media (max-width: 480px) {
-  .button {
-    display: block;
-    margin: 10px auto;
-  }
 }

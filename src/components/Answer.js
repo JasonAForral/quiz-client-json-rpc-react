@@ -30,8 +30,8 @@ class Answer extends Component {
     const correct = (value === correctId ? ' correct-answer' : '')
     
     return (
-      <li className={'answer-wrapper' + incorrect + correct}>
-      <label>
+      <li className='answer-wrapper'>
+      <label className={'answer-label' + incorrect + correct}>
         <input 
           className='radio-button'
           id={value}
