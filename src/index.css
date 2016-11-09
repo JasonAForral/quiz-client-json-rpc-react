@@ -67,6 +67,10 @@ body {
   background: #dfd;
 }
 
+.correct-answer:hover {
+  background: #cfc;
+}
+
 .errorBox {
   border: 1px solid #fcc;
   border-radius: 3px;
