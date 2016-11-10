@@ -22,7 +22,7 @@ export const newQuestionResponseSuccess = (json) => ({
   type: NEW_QUESTION_RESPONSE_SUCCESS,
 })
 
-export const fetchNewQuestion = () => dispatch => {
+export const fetchNewQuestion = quizId => dispatch => {
   let now = Date.now()
   dispatch(newQuestionRequest(now))
   return fetch('api', {
@@ -30,6 +30,9 @@ export const fetchNewQuestion = () => dispatch => {
         id: now,
         jsonrpc: '2.0',
         method: 'newQuestion',
+        params: {
+          quizId, 
+        }
       }),
       headers: {
         'Accept': 'application/json',

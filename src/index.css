@@ -24,16 +24,15 @@ body {
 
 .button {
   background: #f4f4f4;
-  border: 1px outset #ccc;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 5px;
-  padding: 5px 10px;
+  display: inline-block;
+  margin: 5px;
+  padding: 15px 20px;
 }
 
-.button:active {
-  background: #fff;
-  border-style: inset;
+.button:active, .button:hover {
+  background: #f8f8f8;
 }
 
 .answer-list {

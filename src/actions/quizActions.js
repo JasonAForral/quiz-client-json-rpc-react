@@ -20,3 +20,28 @@ export const getQuizzesResponseSuccess = json => ({
   timestamp: json.id,
   type: GET_QUIZZES_RESPONSE_SUCCESS,
 })
+
+export const fetchGetQuizzes = () => dispatch => {
+  let now = Date.now()
+  dispatch(getQuizzesRequest(now))
+  return fetch('api', {
+      body: JSON.stringify({
+        id: now,
+        jsonrpc: '2.0',
+        method: 'getQuizzes',
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.hasOwnProperty('result')) {
+        return dispatch(getQuizzesResponseSuccess(json))
+      } else if (json.hasOwnProperty('error')) {
+        return dispatch(getQuizzesResponseFailure(json))
+      }
+    })
+}
