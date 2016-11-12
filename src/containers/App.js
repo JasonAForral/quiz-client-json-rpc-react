@@ -16,9 +16,16 @@ class App extends Component {
   componentDidMount() {
     const { 
       dispatch,
-      quizzes,
     } = this.props
     dispatch(fetchGetQuizzes())
+  }
+
+
+  handleSelectQuiz = quizId => {
+    const {
+      dispatch,
+    } = this.props
+    dispatch(fetchNewQuestion(quizId))
   }
 
   handleSubmitAnswer = (questionId, guessId) => {
@@ -38,7 +45,7 @@ class App extends Component {
       dispatch,
       quiz,
     } = this.props
-    dispatch(fetchNewQuestion())
+    dispatch(fetchNewQuestion(quiz.quizId))
   }
 
   render() {
@@ -60,11 +67,14 @@ class App extends Component {
     } = quiz
     const haveQuizzes = undefined !== quizzes
     const quizSelected = undefined !== quizId
-    
+
     if (haveQuizzes && !quizSelected) {
       return (
         <div className='wrapper'>
-          <SelectQuizForm quizzes={quizzes}/>
+          <SelectQuizForm
+            quizzes={quizzes}
+            onSubmit={this.handleSelectQuiz}
+          />
           <div className='wrapper-inner'>
             <Error error={error} />
           </div>
@@ -74,7 +84,7 @@ class App extends Component {
     const checked = undefined !== correctId
     
     const submitFunction = (checked ? this.handleNextQuestion : this.handleSubmitAnswer)
-    const submitText = (checked ? 'Next Question' : 'Submit')
+    const submitText = (checked ? 'Next Question' : 'Submit Answer')
 
     return (
       <div className='wrapper'>
@@ -91,12 +101,12 @@ class App extends Component {
             onSubmit={submitFunction}
             question={question}
             submitText={submitText}
+            quizId={quizId}
           />
           <Solution
             answers={answers}
             correctId={correctId}
             guessIsCorrect={guessIsCorrect}
-            onClick={this.handleNextQuestion}
           />
         </div>
         }

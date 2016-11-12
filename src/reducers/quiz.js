@@ -72,6 +72,7 @@ export default function quiz(state = initialState, action) {
         guessid: undefined,
         guessIsCorrect: undefined,
         question: undefined,
+        quizId: action.quizId,
         timestamp: action.timestamp,
       }
     case NEW_QUESTION_RESPONSE_FAILURE:

@@ -15,6 +15,7 @@ class Answer extends Component {
     } = this.props
     onChange(value)
   }
+
   render() {
     const {
       correctId,
@@ -34,7 +35,6 @@ class Answer extends Component {
       <label className={'answer-label' + incorrect + correct}>
         <input 
           className='radio-button'
-          id={value}
           disabled={disabled}
           name='answer'
           onChange={this.handleClick}

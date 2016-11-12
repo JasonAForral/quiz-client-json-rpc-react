@@ -40,6 +40,7 @@ describe('quiz reducer', () => {
       answers: [],
       correctCount: 0,
       doneCount: 0,
+      quizId: 2,
       timestamp: 1,
     }
 
@@ -56,6 +57,7 @@ describe('quiz reducer', () => {
     }
 
     let action = {
+      quizId: 2,
       timestamp: 1,
       type: NEW_QUESTION_REQUEST,
     }

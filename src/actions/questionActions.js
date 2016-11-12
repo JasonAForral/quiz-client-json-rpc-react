@@ -4,7 +4,8 @@ import {
   NEW_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/questionConstants'
 
-export const newQuestionRequest = timestamp => ({
+export const newQuestionRequest = (quizId, timestamp) => ({
+  quizId,
   timestamp,
   type: NEW_QUESTION_REQUEST,
 })
@@ -24,7 +25,7 @@ export const newQuestionResponseSuccess = (json) => ({
 
 export const fetchNewQuestion = quizId => dispatch => {
   let now = Date.now()
-  dispatch(newQuestionRequest(now))
+  dispatch(newQuestionRequest(quizId, now))
   return fetch('api', {
       body: JSON.stringify({
         id: now,

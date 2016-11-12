@@ -18,7 +18,7 @@ class QuestionForm extends Component {
     }
   }
 
-  handleChange = (guessId) => {
+  handleChange = guessId => {
     this.setState({guessId})
   }
 
@@ -69,11 +69,14 @@ class QuestionForm extends Component {
             />)}
           </ul>
         </div>
-        <input
-          className='button'
-          type='submit'
-          value={submitText}
-        />
+        <div>
+          <button
+            className='button'
+            type='submit'
+          >
+            {submitText}
+          </button>
+        </div>
       </form>
     )
   }
