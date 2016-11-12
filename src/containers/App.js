@@ -4,7 +4,6 @@ import Counter from '../components/Counter'
 import Error from '../components/Error'
 import QuestionForm from '../components/QuestionForm'
 import SelectQuizForm from '../components/SelectQuizForm'
-import Solution from '../components/Solution'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
 import { fetchGetQuizzes } from '../actions/quizActions'
@@ -102,11 +101,6 @@ class App extends Component {
             question={question}
             submitText={submitText}
             quizId={quizId}
-          />
-          <Solution
-            answers={answers}
-            correctId={correctId}
-            guessIsCorrect={guessIsCorrect}
           />
         </div>
         }

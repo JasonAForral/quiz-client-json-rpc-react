@@ -35,6 +35,7 @@ class QuestionForm extends Component {
     if (-1 === guessId && undefined === correctId) {
       return false
     }
+    this.submitInput.focus()
     onSubmit(question.id, guessId)
     this.setState({guessId: -1})
     return false
@@ -72,6 +73,7 @@ class QuestionForm extends Component {
         <div>
           <button
             className='button'
+            ref={input => this.submitInput = input}
             type='submit'
           >
             {submitText}

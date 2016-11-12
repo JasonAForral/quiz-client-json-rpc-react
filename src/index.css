@@ -23,14 +23,17 @@ body {
 .button {
   background: #eee;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   display: inline-block;
   margin: 5px;
-  padding: 15px 20px;
+  padding: 8px 32px;
 }
 
-.button:active, .button:hover {
+.button:hover {
+  background: #f0f0f0;
+}
+
+.button:active {
   background: #f8f8f8;
 }
 
@@ -41,15 +44,20 @@ body {
 }
 
 .answer-label {
-  border-radius: 8px;
+  border-radius: 32px;
   display: inline-block;
-  padding: 8px 16px;
+  padding: 8px;
   width: 100%;
   transition-duration: 0.5s;
 }
 
 .answer-label:hover {
   background: #f4f4f4;
+}
+
+.answer-label:active {
+  background: #eee;
+  transition-duration: 0.1s;
 }
 
 .answer-wrapper {
@@ -69,14 +77,16 @@ body {
   background: #cfc;
 }
 
+.correct-answer:active {
+  background: #efe;
+}
+
 .error-box {
   border: 1px solid #fcc;
-  border-radius: 8px;
 }
 
 .search-box {
   border: 1px solid #ddd;
-  border-radius: 8px;
   padding: 8px;
   text-align: center;
 }
