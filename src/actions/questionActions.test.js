@@ -13,11 +13,12 @@ describe('question actions', () => {
   it('newQuestionRequest should create an action', () => {
 
     let expected = {
+      quizId: 2,
       timestamp: 1,
       type: NEW_QUESTION_REQUEST,
     }
 
-    let actual = newQuestionRequest(1)
+    let actual = newQuestionRequest(2, 1)
 
     expect(actual).toEqual(expected)
   })

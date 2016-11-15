@@ -4,7 +4,6 @@ import {
   ANSWER_QUESTION_RESPONSE_SUCCESS,
 } from '../constants/answerConstants'
 
-
 export const answerQuestionRequest = (guessId, timestamp) => ({
   guessId,
   timestamp,

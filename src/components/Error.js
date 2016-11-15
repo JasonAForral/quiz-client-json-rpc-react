@@ -12,7 +12,7 @@ class Error extends Component {
     }
     return (
       <span>
-        <p className='errorBox'>
+        <p className='error-box'>
           {error.message}
         </p>
       </span>
