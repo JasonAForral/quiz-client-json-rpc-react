@@ -32,13 +32,11 @@ class SelectQuizForm extends Component {
   handleChange = quizId => {
     this.setState({
       quizId,
-      searchFilter: this.state.searchFilter,
     })
   }
 
   handleSearchChange = e => {
     this.setState({
-      quizId: this.state.quizId,
       searchFilter: e.target.value.toLowerCase(),
     })
   }
@@ -46,7 +44,6 @@ class SelectQuizForm extends Component {
   clearSelection () {
     this.setState({
       quizId: -1,
-      searchFilter: this.state.searchFilter,
     })
   }
 
@@ -65,7 +62,6 @@ class SelectQuizForm extends Component {
       if (!out && quizId === quiz.id) {
         this.setState({
           quizId: -1,
-          searchFilter,
         })
       }
       return out 
