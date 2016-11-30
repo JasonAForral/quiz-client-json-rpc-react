@@ -47,6 +47,14 @@ class App extends Component {
     dispatch(fetchNewQuestion(quiz.quizId))
   }
 
+  handleTab = e => {
+
+  }
+
+  handleLogin = e => {
+    e.preventDefault()
+  }
+
   render() {
     const {
       quiz,
@@ -66,6 +74,26 @@ class App extends Component {
     } = quiz
     const haveQuizzes = undefined !== quizzes
     const quizSelected = undefined !== quizId
+    const a = false
+
+    if (a) {
+      return (
+        <div className='wrapper'>
+          <div className='wrapper-inner'>
+            This is the login form.
+            <form onSubmit={this.handleLogin} className='login-form'>
+              <input className='input' placeholder='Username' />
+              <br />
+              <input className='input' type='password' placeholder='Password' />
+              <br />
+              <button className='button' type='submit'>Do the thing!</button>
+            </form>
+            <button className='login-tab'>Log in</button>
+            <button className='login-tab'>Create Account</button>
+          </div>
+        </div>
+      )
+    }
 
     if (haveQuizzes && !quizSelected) {
       return (

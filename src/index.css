@@ -94,3 +94,24 @@ body {
 .counter {
   margin: 5px auto;
 }
+
+.login-form {
+  background: #369;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login-tab {
+  background: #369;
+  color: white;
+  border-radius: 0 0 100px 100px;
+  padding: 5px 20px;
+  border: 1px solid #369;
+}
+
+.input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    margin: 5px;
+}
