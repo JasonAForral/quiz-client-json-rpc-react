@@ -4,7 +4,7 @@ import {
   GET_QUIZZES_RESPONSE_SUCCESS,
 } from './quizConstants'
 
-describe('question constants', () => {
+describe('quiz constants', () => {
   it('GET_QUIZZES_REQUEST should not be undefined', () => {
 
     let expected = true

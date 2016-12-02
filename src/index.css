@@ -83,12 +83,15 @@ body {
 
 .error-box {
   border: 1px solid #fcc;
+  background: white;
 }
 
 .search-box {
-  border: 1px solid #ddd;
+  border: 1px solid #aaa;
   padding: 8px;
   text-align: center;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .counter {
@@ -102,11 +105,16 @@ body {
 }
 
 .login-tab {
-  background: #369;
-  color: white;
+  color: #369;
   border-radius: 0 0 100px 100px;
   padding: 5px 20px;
   border: 1px solid #369;
+  text-decoration: none;
+}
+
+.active-tab {
+  background: #369;
+  color: white;  
 }
 
 .input {

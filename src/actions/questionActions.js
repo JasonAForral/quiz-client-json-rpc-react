@@ -16,7 +16,7 @@ export const newQuestionResponseFailure = json => ({
   type: NEW_QUESTION_RESPONSE_FAILURE,
 })
 
-export const newQuestionResponseSuccess = (json) => ({
+export const newQuestionResponseSuccess = json => ({
   answers: json.result.answers,
   question: json.result.question,
   timestamp: json.id,

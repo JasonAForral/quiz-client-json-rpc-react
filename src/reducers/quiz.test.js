@@ -14,6 +14,14 @@ import {
   GET_QUIZZES_RESPONSE_FAILURE,
   GET_QUIZZES_RESPONSE_SUCCESS,
 } from '../constants/quizConstants'
+import {
+  CREATE_ACCOUNT_REQUEST,
+  CREATE_ACCOUNT_RESPONSE_FAILURE,
+  CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  LOGIN_REQUEST,
+  LOGIN_RESPONSE_FAILURE,
+  LOGIN_RESPONSE_SUCCESS,
+} from '../constants/securityConstants'
 
 describe('quiz reducer', () => {
   it('should handle initial state', () => {
@@ -332,6 +340,64 @@ describe('quiz reducer', () => {
       ],
       timestamp: 1,
       type: GET_QUIZZES_RESPONSE_SUCCESS,
+    }
+
+    let actual = quiz(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  // Login Actions ****************
+
+  it('should handle LOGIN_REQUEST action', () => {
+
+    let expected = {
+      answers: [],
+      correctCount: 0,
+      doneCount: 0,
+      timestamp: 1,
+    }
+
+    let state = undefined
+
+    let action = {
+      guessId: 1,
+      timestamp: 1,
+      type: LOGIN_REQUEST,
+    }
+
+    let actual = quiz(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle LOGIN_RESPONSE_FAILURE action', () => {
+
+    let expected = {
+      answers: [],
+      correctCount: 0,
+      doneCount: 0,
+      error: {
+        code: 20,
+        message: 'Invalid login credentials',
+      },
+      timestamp: 1,
+    }
+
+    let state = {
+      answers: [],
+      correctCount: 0,
+      doneCount: 0,
+      timestamp: 0,
+    }
+
+    let action = {
+      error: {
+        code: 20,
+        message: 'Invalid login credentials',
+      },
+      timestamp: 1,
+      type: LOGIN_RESPONSE_FAILURE,
     }
 
     let actual = quiz(state, action)

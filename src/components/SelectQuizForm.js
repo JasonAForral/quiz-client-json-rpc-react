@@ -74,6 +74,7 @@ class SelectQuizForm extends Component {
           className='search-box'
           onChange={this.handleSearchChange}
           value={searchFilter}
+          placeholder='Search Quizzes'
         /></p>
         <form id='select-quiz-from' onSubmit={this.handleSubmit}>
           <div>

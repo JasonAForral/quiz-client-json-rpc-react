@@ -4,11 +4,7 @@ import SecurityNav from '../components/SecurityNav'
 
 class CreateAccount extends Component {
 
-  handleChangeTab = e => {
-
-  }
-
-  handleLogin = e => {
+  handleCreateAccount = e => {
     e.preventDefault()
   }
 
@@ -16,7 +12,7 @@ class CreateAccount extends Component {
     return (
       <SecurityNav>
         This is the create account form.
-        <form onSubmit={this.handleLogin} className='login-form'>
+        <form onSubmit={this.handleCreateAccount} className='login-form'>
           <input className='input' placeholder='Username' />
           <br />
           <input className='input' type='password' placeholder='Password' />
@@ -33,6 +29,7 @@ class CreateAccount extends Component {
 }
 
 const mapStateToProps = state => ({
+  quiz: state.quiz,
 })
 
 export default connect(mapStateToProps)(CreateAccount)

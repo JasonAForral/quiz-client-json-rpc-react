@@ -13,6 +13,14 @@ import {
   GET_QUIZZES_RESPONSE_FAILURE,
   GET_QUIZZES_RESPONSE_SUCCESS,
 } from '../constants/quizConstants'
+import {
+  CREATE_ACCOUNT_REQUEST,
+  CREATE_ACCOUNT_RESPONSE_FAILURE,
+  CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  LOGIN_REQUEST,
+  LOGIN_RESPONSE_FAILURE,
+  LOGIN_RESPONSE_SUCCESS,
+} from '../constants/securityConstants'
 
 const initialState = {
   answers: [],
@@ -89,6 +97,17 @@ export default function quiz(state = initialState, action) {
         guessId: undefined,
         guessIsCorrect: undefined,
         question: action.question,
+        timestamp: action.timestamp,
+      }
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        timestamp: action.timestamp,
+      }
+    case LOGIN_RESPONSE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
         timestamp: action.timestamp,
       }
     default:
