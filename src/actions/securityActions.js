@@ -48,12 +48,13 @@ export const fetchLogin = (username, password) => dispatch => {
       body: JSON.stringify({
         id: now,
         jsonrpc: '2.0',
-        method: 'Login',
-        parameters: {
+        method: 'login',
+        params: {
           username,
           password,
         }
       }),
+      credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -77,8 +78,8 @@ export const fetchCreateAccount = (username, password, password2, email) => disp
       body: JSON.stringify({
         id: now,
         jsonrpc: '2.0',
-        method: 'CreateAccount',
-        parameters: {
+        method: 'createAccount',
+        params: {
           username,
           password,
           password2,
