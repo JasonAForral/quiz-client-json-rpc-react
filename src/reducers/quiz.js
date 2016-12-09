@@ -99,6 +99,7 @@ export default function quiz(state = initialState, action) {
         question: action.question,
         timestamp: action.timestamp,
       }
+
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -110,7 +111,32 @@ export default function quiz(state = initialState, action) {
         error: action.error,
         timestamp: action.timestamp,
       }
+    case LOGIN_RESPONSE_SUCCESS:
+      return {
+        ...state,
+        username: action.username,
+        timestamp: action.timestamp,
+      }
+
+    case CREATE_ACCOUNT_REQUEST:
+      return {
+        ...state,
+        timestamp: action.timestamp,
+      }
+    case CREATE_ACCOUNT_RESPONSE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        timestamp: action.timestamp,
+      }
+    case CREATE_ACCOUNT_RESPONSE_SUCCESS:
+      return {
+        ...state,
+        timestamp: action.timestamp,
+      }
+
     default:
       return state
+      
   }
 }

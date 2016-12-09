@@ -69,3 +69,34 @@ export const fetchLogin = (username, password) => dispatch => {
       }
     })
 }
+
+export const fetchCreateAccount = (username, password, password2, email) => dispatch => {
+  let now = Date.now()
+  dispatch(createAccountRequest(now))
+  return fetch('api', {
+      body: JSON.stringify({
+        id: now,
+        jsonrpc: '2.0',
+        method: 'CreateAccount',
+        parameters: {
+          username,
+          password,
+          password2,
+          email,
+        }
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.hasOwnProperty('result')) {
+        return dispatch(createAccountResponseSuccess(json))
+      } else if (json.hasOwnProperty('error')) {
+        return dispatch(createAccountResponseFailure(json))
+      }
+    })
+}

@@ -5,25 +5,63 @@ import SecurityNav from '../components/SecurityNav'
 import { fetchLogin } from '../actions/securityActions'
 
 class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+    }
+  }
+
+  handleUsernameInput = e => {
+    this.setState({
+      username: e.target.value
+    })
+  }
+
+  handlePasswordInput = e => {
+    this.setState({
+      password: e.target.value
+    })
+  }
 
   handleLogin = e => {
     e.preventDefault()
     const {
+      password,
+      username,
+    } = this.state
+    const {
       dispatch,
     } = this.props
-    dispatch(fetchLogin('hattrick', 'hathathat'))
+    dispatch(fetchLogin(username, password))
   }
 
   render() {
-    const {quiz} = this.props
-    const {error} = quiz
+    const {
+      quiz,
+    } = this.props
+    const {
+      error,
+    } = quiz
     return (
       <SecurityNav>
         This is the login form.
         <form onSubmit={this.handleLogin} className='login-form'>
-          <input className='input' placeholder='Username' />
+          <input
+            autoComplete='username'
+            className='input'
+            placeholder='Username'
+            onInput={this.handleUsernameInput}
+          />
           <br />
-          <input className='input' type='password' placeholder='Password' />
+          <input
+            autoComplete='password'
+            className='input'
+            type='password'
+            placeholder='Password'
+            onInput={this.handlePasswordInput}
+          />
           <br />
           <button className='button' type='submit'>Do the thing!</button>
         <div className='wrapper-inner'>
