@@ -75,6 +75,7 @@ describe('security actions', () => {
 
     let expected = {
       timestamp: 1,
+      error: undefined,
       type: LOGIN_REQUEST,
     }
 

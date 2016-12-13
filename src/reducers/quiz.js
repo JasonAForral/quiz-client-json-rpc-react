@@ -103,6 +103,7 @@ export default function quiz(state = initialState, action) {
     case LOGIN_REQUEST:
       return {
         ...state,
+        error: action.error,
         timestamp: action.timestamp,
       }
     case LOGIN_RESPONSE_FAILURE:

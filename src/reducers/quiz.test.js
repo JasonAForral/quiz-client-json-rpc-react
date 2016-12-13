@@ -355,10 +355,16 @@ describe('quiz reducer', () => {
       answers: [],
       correctCount: 0,
       doneCount: 0,
+      error: undefined,
       timestamp: 1,
     }
 
-    let state = undefined
+    let state = {
+      answers: [],
+      correctCount: 0,
+      doneCount: 0,
+      error: 'stuff',
+    }
 
     let action = {
       guessId: 1,

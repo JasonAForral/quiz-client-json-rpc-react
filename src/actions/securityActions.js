@@ -26,6 +26,7 @@ export const createAccountResponseSuccess = json => ({
 
 export const loginRequest = timestamp => ({
   timestamp,
+  // error: undefined,
   type: LOGIN_REQUEST,
 })
 
