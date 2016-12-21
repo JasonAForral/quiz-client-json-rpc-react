@@ -48,7 +48,7 @@ class Login extends Component {
     } = session
     return (
       <div className='container'>
-        <SecurityNav username={username}/>
+        <SecurityNav username={username} />
         <div className='display'>
           <div className='dialog'>
             <h2>Login</h2>

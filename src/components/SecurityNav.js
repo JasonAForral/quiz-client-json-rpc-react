@@ -31,21 +31,27 @@ class SecurityNav extends Component {
     const loggedIn = undefined !== username
 
     return (
-      <nav>
-        {loggedIn && 
-          <div className='navBig'>
-            <NavLink to='/'> {username} </NavLink>
-            <NavLink to='/logout'> Logout </NavLink>
-          </div>
-        }
-        {!loggedIn && 
-          <div className='navBig'>
-            <NavLink to='/'> Home </NavLink>
-            <NavLink to='/login'> Login </NavLink>
-            <NavLink to='/create-account'> Create Account </NavLink>
-          </div>
-        }
-      </nav>
+      <div>
+        {(loggedIn && 
+          <nav className='navbar'>
+            <span>
+              <NavLink to='/'> {username} </NavLink>
+            </span>
+            <span>
+              <NavLink to='/logout'> Logout </NavLink>
+            </span>
+          </nav>
+        )|| 
+          <nav className='navbar'>
+            <span>
+              <NavLink to='/'>Home</NavLink>
+            </span>
+            <span>
+              <NavLink to='/login'>Login</NavLink>
+              <NavLink to='/create-account'>Create Account</NavLink>
+            </span>
+          </nav>
+        }</div>
     )
   }
 }
