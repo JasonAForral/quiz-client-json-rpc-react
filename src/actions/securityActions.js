@@ -26,7 +26,7 @@ export const createAccountResponseSuccess = json => ({
 
 export const loginRequest = timestamp => ({
   timestamp,
-  // error: undefined,
+  error: undefined,
   type: LOGIN_REQUEST,
 })
 
@@ -37,9 +37,9 @@ export const loginResponseFailure = json => ({
 })
 
 export const loginResponseSuccess = json => ({
-  username: json.result.username,
   timestamp: json.id,
   type: LOGIN_RESPONSE_SUCCESS,
+  username: json.result.username,
 })
 
 export const fetchLogin = (username, password) => dispatch => {

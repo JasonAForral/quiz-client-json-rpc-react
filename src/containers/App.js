@@ -59,6 +59,7 @@ class App extends Component {
   render() {
     const {
       quiz,
+      session,
     } = this.props
 
     const {
@@ -78,16 +79,20 @@ class App extends Component {
 
     if (haveQuizzes && !quizSelected) {
       return (
-        <div className='wrapper'>
-          <SelectQuizForm
-            quizzes={quizzes}
-            onSubmit={this.handleSelectQuiz}
-          />
-          <div className='wrapper-inner'>
-            <Error error={error} />
-          </div>
-          <div className='wrapper-inner'>
-            <Link to='/login'>Log in</Link>
+        <div className='container'>
+          <div className='display'>
+            <div className='dialog'>
+              <SelectQuizForm
+                quizzes={quizzes}
+                onSubmit={this.handleSelectQuiz}
+              />
+              <div className='wrapper-inner'>
+                <Error error={error} />
+              </div>
+              <div className='wrapper-inner'>
+                <Link to='/login'>Log in</Link>
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -97,27 +102,31 @@ class App extends Component {
     const submitFunction = (checked ? this.handleNextQuestion : this.handleSubmitAnswer)
     const submitText = (checked ? 'Next Question' : 'Submit Answer')
 
-    return (
-      <div className='wrapper'>
-        {quizSelected && 
-          <div className='wrapper-inner'>
-          <Counter
-            correctCount={correctCount}
-            doneCount={doneCount}
-          />
-          <QuestionForm
-            answers={answers}
-            correctId={correctId}
-            guessId={guessId}
-            onSubmit={submitFunction}
-            question={question}
-            submitText={submitText}
-            quizId={quizId}
-          />
-        </div>
-        }
-        <div className='wrapper-inner'>
-          <Error error={error} />
+  return (
+      <div className='container'>
+        <div className='display'>
+          <div className='dialog'>
+            {quizSelected && 
+              <div className='wrapper-inner'>
+              <Counter
+                correctCount={correctCount}
+                doneCount={doneCount}
+              />
+              <QuestionForm
+                answers={answers}
+                correctId={correctId}
+                guessId={guessId}
+                onSubmit={submitFunction}
+                question={question}
+                submitText={submitText}
+                quizId={quizId}
+              />
+            </div>
+            }
+            <div className='wrapper-inner'>
+              <Error error={error} />
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -126,6 +135,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   quiz: state.quiz,
+  session: state.session,
 })
 
 export default connect(mapStateToProps)(App)

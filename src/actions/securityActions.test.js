@@ -111,9 +111,9 @@ describe('security actions', () => {
   it('loginResponseSuccess should create an action', () => {
 
     let expected = {
-      username: 'Username',
       timestamp: 1,
       type: LOGIN_RESPONSE_SUCCESS,
+      username: 'Username',
     }
 
     let json = {

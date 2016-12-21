@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Error from '../components/Error'
+import InputArrow from '../components/InputArrow'
 import SecurityNav from '../components/SecurityNav'
 import { fetchCreateAccount } from '../actions/securityActions'
 
@@ -73,53 +74,61 @@ class CreateAccount extends Component {
 
   render() {
     const {
-      quiz,
+      session,
     } = this.props
     const {
       error,
-    } = quiz
+    } = session
     const {
       isMismatch,
     } = this.state
     return (
       <SecurityNav>
-        This is the create account form.
-        <form onSubmit={this.handleCreateAccount} className='login-form'>
-          <input
-            autoComplete='username'
-            className='input'
-            maxLength='256'
-            placeholder='Username'
-            onInput={this.handleUsernameInput}
-            title="username"
-          />
-          <br />
-          <input
-            title="8+ character password"
-            autoComplete='new-password'
-            className='input'
-            minLength='8'
-            type='password'
-            placeholder='Password'
-            onInput={this.handlePasswordInput} />
-          <br />
-          <input
-            className={this.getRetypeClass(isMismatch)} type='password' placeholder='Retype Password'
-            onInput={this.handlePassword2Input}
-          /><br/>
-          {isMismatch && <span
+        <h2>Create Account</h2>
+        <form onSubmit={this.handleCreateAccount} className='form'>
+          <label className='label'>
+            <input
+              autoComplete='username'
+              className='input'
+              maxLength='256'
+              placeholder='Username'
+              onInput={this.handleUsernameInput}
+              title="username"
+            />
+            <InputArrow />
+          </label>
+          <label className='label'>
+            <input
+              title="8+ character password"
+              autoComplete='new-password'
+              className='input'
+              minLength='8'
+              type='password'
+              placeholder='Password'
+              onInput={this.handlePasswordInput} />
+            <InputArrow />
+          </label>
+          <label className='label'>
+            <input
+              className={this.getRetypeClass(isMismatch)} type='password' placeholder='Retype Password'
+              onInput={this.handlePassword2Input}
+            />
+            <InputArrow />
+          {isMismatch && <div
             className='input-error'
           >Passwords do not match!
-          </span>}
-          <br />
-          <input
-            autoComplete='email'
-            className='input'
-            type='email'
-            placeholder='Email Address'
-            onInput={this.handleEmailInput}
-          />
-          <br />
+          </div>}
+          </label>
+          <label className='label'>
+            <input
+              autoComplete='email'
+              className='input'
+              type='email'
+              placeholder='Email Address'
+              onInput={this.handleEmailInput}
+            />
+            <InputArrow />
+          </label>
           <button className='button' type='submit'>Create Account</button>
         <div className='wrapper-inner'>
             <Error error={error} />
@@ -131,7 +140,8 @@ class CreateAccount extends Component {
 }
 
 const mapStateToProps = state => ({
-  quiz: state.quiz,
+  // quiz: state.quiz,
+  session: state.session,
 })
 
 export default connect(mapStateToProps)(CreateAccount)

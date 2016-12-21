@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Error from '../components/Error'
+import InputArrow from '../components/InputArrow'
 import SecurityNav from '../components/SecurityNav'
 import { fetchLogin } from '../actions/securityActions'
 
@@ -39,30 +40,34 @@ class Login extends Component {
 
   render() {
     const {
-      quiz,
+      session,
     } = this.props
     const {
       error,
-    } = quiz
+    } = session
     return (
       <SecurityNav>
-        This is the login form.
-        <form onSubmit={this.handleLogin} className='login-form'>
-          <input
-            autoComplete='username'
-            className='input'
-            placeholder='Username'
-            onInput={this.handleUsernameInput}
-          />
-          <br />
-          <input
-            autoComplete='password'
-            className='input'
-            type='password'
-            placeholder='Password'
-            onInput={this.handlePasswordInput}
-          />
-          <br />
+        <h2>Login</h2>
+        <form onSubmit={this.handleLogin} className='form'>
+          <label className='label'>
+            <input
+              autoComplete='username'
+              className='input'
+              placeholder='Username'
+              onInput={this.handleUsernameInput}
+            />
+            <InputArrow />
+          </label>
+          <label className='label'>
+            <input
+              autoComplete='password'
+              className='input'
+              type='password'
+              placeholder='Password'
+              onInput={this.handlePasswordInput}
+            />
+            <InputArrow />
+          </label>
           <button className='button' type='submit'>Do the thing!</button>
         <div className='wrapper-inner'>
             <Error error={error} />
@@ -74,7 +79,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  quiz: state.quiz,
+  // quiz: state.quiz,
+  session: state.session,
 })
 
 export default connect(mapStateToProps)(Login)
