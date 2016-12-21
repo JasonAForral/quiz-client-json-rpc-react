@@ -69,9 +69,8 @@ class SelectQuizForm extends Component {
     })
 
     return (
-      <div className='wrapper-inner'>
+      <div>
         <form className='form'>
-          <h2>Select a Quiz:</h2>
           <Input 
                 label='Search Quizzes'
                 onInput={this.handleSearchChange}

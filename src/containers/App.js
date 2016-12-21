@@ -89,6 +89,7 @@ class App extends Component {
         <SecurityNav username={username}/>
           <div className='display'>
             <div className='dialog'>
+              <h2>Select a Quiz:</h2>
               <SelectQuizForm
                 quizzes={quizzes}
                 onSubmit={this.handleSelectQuiz}
@@ -115,7 +116,7 @@ class App extends Component {
         <div className='display'>
           <div className='dialog'>
             {quizSelected && 
-              <div className='wrapper-inner'>
+              <div>
               <Counter
                 correctCount={correctCount}
                 doneCount={doneCount}
@@ -131,9 +132,7 @@ class App extends Component {
               />
             </div>
             }
-            <div className='wrapper-inner'>
-              <Error error={error} />
-            </div>
+            <Error error={error} />
           </div>
         </div>
       </div>

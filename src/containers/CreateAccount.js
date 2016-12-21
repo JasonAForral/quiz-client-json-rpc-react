@@ -115,7 +115,7 @@ class CreateAccount extends Component {
                 type='email'
               />
               <button className='button' type='submit'>Create Account</button>
-              <div className='wrapper-inner'>
+              <div>
                   <Error error={error} />
               </div>
             </form>
@@ -126,47 +126,6 @@ class CreateAccount extends Component {
     )
   }
 }
-
-              // <label className='label'>
-              //   <input
-              //     autoComplete='username'
-              //     className='input'
-              //     maxLength='256'
-              //     placeholder='Username'
-              //     onInput={this.handleUsernameInput}
-              //     title="username"
-              //   />
-              //   <InputArrow />
-              // </label>
-              // <label className='label'>
-              //   <input
-              //     title="8+ character password"
-              //     autoComplete='new-password'
-              //     className='input'
-              //     minLength='8'
-              //     type='password'
-              //     placeholder='Password'
-              //     onInput={this.handlePasswordInput} />
-              //   <InputArrow />
-              // </label>
-              // <label className='label'>
-              //   <input
-              //     className={this.getRetypeClass(isMismatch)} type='password' placeholder='Retype Password'
-              //     onInput={this.handlePassword2Input}
-              //   />
-              //   <InputArrow />
-              // </label>
-              // <label className='label'>
-              //   <input
-              //     autoComplete='email'
-              //     className='input'
-              //     type='email'
-              //     placeholder='Email Address'
-              //     onInput={this.handleEmailInput}
-              //   />
-              //   <InputArrow />
-              // </label>
-
 
 const mapStateToProps = state => ({
   // quiz: state.quiz,
