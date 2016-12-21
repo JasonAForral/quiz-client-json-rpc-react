@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Error from '../components/Error'
-import InputArrow from '../components/InputArrow'
+import Input from '../components/Input'
 import SecurityNav from '../components/SecurityNav'
 import { fetchLogin } from '../actions/securityActions'
 
@@ -44,36 +44,33 @@ class Login extends Component {
     } = this.props
     const {
       error,
+      username
     } = session
     return (
-      <SecurityNav>
-        <h2>Login</h2>
-        <form onSubmit={this.handleLogin} className='form'>
-          <label className='label'>
-            <input
-              autoComplete='username'
-              className='input'
-              placeholder='Username'
-              onInput={this.handleUsernameInput}
-            />
-            <InputArrow />
-          </label>
-          <label className='label'>
-            <input
-              autoComplete='password'
-              className='input'
-              type='password'
-              placeholder='Password'
-              onInput={this.handlePasswordInput}
-            />
-            <InputArrow />
-          </label>
-          <button className='button' type='submit'>Do the thing!</button>
-        <div className='wrapper-inner'>
-            <Error error={error} />
+      <div className='container'>
+        <SecurityNav username={username}/>
+        <div className='display'>
+          <div className='dialog'>
+            <h2>Login</h2>
+            <form onSubmit={this.handleLogin} className='form'>
+              <Input 
+                label='Username'
+                onInput={this.handleUsernameInput}
+                type='text'
+              />
+              <Input 
+                label='Password'
+                onInput={this.handlePasswordInput}
+                type='password'
+              />
+              <button className='button' type='submit'>Login</button>
+            </form>
+            <div className='wrapper-inner'>
+              <Error error={error} />
+            </div>
+          </div>
         </div>
-        </form>
-      </SecurityNav>
+      </div>
     )
   }
 }

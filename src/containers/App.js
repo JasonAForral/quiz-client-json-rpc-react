@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Counter from '../components/Counter'
 import Error from '../components/Error'
 import QuestionForm from '../components/QuestionForm'
+import SecurityNav from '../components/SecurityNav'
 import SelectQuizForm from '../components/SelectQuizForm'
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
@@ -74,12 +75,18 @@ class App extends Component {
       quizId,
       quizzes,
     } = quiz
+
+    const {
+      username
+    } = session
+
     const haveQuizzes = undefined !== quizzes
     const quizSelected = undefined !== quizId
 
     if (haveQuizzes && !quizSelected) {
       return (
         <div className='container'>
+        <SecurityNav username={username}/>
           <div className='display'>
             <div className='dialog'>
               <SelectQuizForm
@@ -104,6 +111,7 @@ class App extends Component {
 
   return (
       <div className='container'>
+        <SecurityNav username={username}/>
         <div className='display'>
           <div className='dialog'>
             {quizSelected && 

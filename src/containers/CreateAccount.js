@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Error from '../components/Error'
-import InputArrow from '../components/InputArrow'
+import Input from '../components/Input'
 import SecurityNav from '../components/SecurityNav'
 import { fetchCreateAccount } from '../actions/securityActions'
 
@@ -78,66 +78,95 @@ class CreateAccount extends Component {
     } = this.props
     const {
       error,
+      username,
     } = session
     const {
       isMismatch,
     } = this.state
     return (
-      <SecurityNav>
-        <h2>Create Account</h2>
-        <form onSubmit={this.handleCreateAccount} className='form'>
-          <label className='label'>
-            <input
-              autoComplete='username'
-              className='input'
-              maxLength='256'
-              placeholder='Username'
-              onInput={this.handleUsernameInput}
-              title="username"
-            />
-            <InputArrow />
-          </label>
-          <label className='label'>
-            <input
-              title="8+ character password"
-              autoComplete='new-password'
-              className='input'
-              minLength='8'
-              type='password'
-              placeholder='Password'
-              onInput={this.handlePasswordInput} />
-            <InputArrow />
-          </label>
-          <label className='label'>
-            <input
-              className={this.getRetypeClass(isMismatch)} type='password' placeholder='Retype Password'
-              onInput={this.handlePassword2Input}
-            />
-            <InputArrow />
-          {isMismatch && <div
-            className='input-error'
-          >Passwords do not match!
-          </div>}
-          </label>
-          <label className='label'>
-            <input
-              autoComplete='email'
-              className='input'
-              type='email'
-              placeholder='Email Address'
-              onInput={this.handleEmailInput}
-            />
-            <InputArrow />
-          </label>
-          <button className='button' type='submit'>Create Account</button>
-        <div className='wrapper-inner'>
-            <Error error={error} />
+      <div className='container'>
+        <SecurityNav username={username}/>>
+        <div className='display'>
+          <div className='dialog'>
+            <h2>Create Account</h2>
+            <form onSubmit={this.handleCreateAccount} className='form'>
+              <Input 
+                label='Username'
+                onInput={this.handleUsernameInput}
+                type='text'
+              />
+              <Input 
+                label='Password'
+                onInput={this.handlePasswordInput}
+                type='password'
+              />
+              <Input 
+                label='Retype Password'
+                onInput={this.handlePassword2Input}
+                type='password'
+              />
+              {isMismatch && <div
+                className='input-error'
+              >Passwords do not match!
+              </div>}
+              <Input 
+                label='Email Address'
+                onInput={this.handleEmailInput}
+                type='email'
+              />
+              <button className='button' type='submit'>Create Account</button>
+              <div className='wrapper-inner'>
+                  <Error error={error} />
+              </div>
+            </form>
+          </div>
         </div>
-        </form>
-      </SecurityNav>
+      </div>
+
     )
   }
 }
+
+              // <label className='label'>
+              //   <input
+              //     autoComplete='username'
+              //     className='input'
+              //     maxLength='256'
+              //     placeholder='Username'
+              //     onInput={this.handleUsernameInput}
+              //     title="username"
+              //   />
+              //   <InputArrow />
+              // </label>
+              // <label className='label'>
+              //   <input
+              //     title="8+ character password"
+              //     autoComplete='new-password'
+              //     className='input'
+              //     minLength='8'
+              //     type='password'
+              //     placeholder='Password'
+              //     onInput={this.handlePasswordInput} />
+              //   <InputArrow />
+              // </label>
+              // <label className='label'>
+              //   <input
+              //     className={this.getRetypeClass(isMismatch)} type='password' placeholder='Retype Password'
+              //     onInput={this.handlePassword2Input}
+              //   />
+              //   <InputArrow />
+              // </label>
+              // <label className='label'>
+              //   <input
+              //     autoComplete='email'
+              //     className='input'
+              //     type='email'
+              //     placeholder='Email Address'
+              //     onInput={this.handleEmailInput}
+              //   />
+              //   <InputArrow />
+              // </label>
+
 
 const mapStateToProps = state => ({
   // quiz: state.quiz,

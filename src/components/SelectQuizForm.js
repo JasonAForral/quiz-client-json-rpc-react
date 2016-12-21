@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import QuizChoice from './QuizChoice'
-import InputArrow from '../components/InputArrow'
+import Input from './Input'
 
 class SelectQuizForm extends Component {
   static propTypes = {
@@ -72,15 +72,11 @@ class SelectQuizForm extends Component {
       <div className='wrapper-inner'>
         <form className='form'>
           <h2>Select a Quiz:</h2>
-          <label className='label'>
-            <input
-              className='input'
-              onChange={this.handleSearchChange}
-              value={searchFilter}
-              placeholder='Search Quizzes'
-            />
-            <InputArrow />
-          </label>
+          <Input 
+                label='Search Quizzes'
+                onInput={this.handleSearchChange}
+                type='text'
+              />
         </form>
         <form
           onSubmit={this.handleSubmit}
