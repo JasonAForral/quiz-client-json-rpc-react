@@ -65,22 +65,19 @@ class SelectQuizForm extends Component {
           quizId: -1,
         })
       }
-      return out 
+      return out
     })
 
     return (
       <div>
         <form className='form'>
           <Input 
-                label='Search Quizzes'
-                onInput={this.handleSearchChange}
-                type='text'
-              />
+            label='Search Quizzes'
+            onInput={this.handleSearchChange}
+            type='text'
+          />
         </form>
-        <form
-          onSubmit={this.handleSubmit}
-          className='form'
-        >
+        <form className='form' onSubmit={this.handleSubmit}>
           <div>
             <ul className='answer-list'>
             {filteredQuizzes.map(quiz => (
@@ -94,10 +91,8 @@ class SelectQuizForm extends Component {
             </ul>
           </div>
           <div>
-            <button
-              className='button'
-              type='submit'
-            >Start
+            <button className='button' type='submit'>
+              Start
             </button>
           </div>
         </form>

@@ -12,15 +12,17 @@ import { fetchGetQuizzes } from '../actions/quizActions'
 
 class App extends Component {
   static propTypes = {
+    questions: PropTypes.object.isRequired,
     quiz: PropTypes.object.isRequired,
+    session: PropTypes.object.isRequired,
   }
+
   componentDidMount() {
     const { 
       dispatch,
     } = this.props
     dispatch(fetchGetQuizzes())
   }
-
 
   handleSelectQuiz = quizId => {
     const {
@@ -32,21 +34,26 @@ class App extends Component {
   handleSubmitAnswer = (questionId, guessId) => {
     const {
       dispatch,
-      quiz,
+      questions,
     } = this.props
     const {
       correctCount,
       doneCount,
-    } = quiz
+    } = questions
     dispatch(fetchAnswerQuestion(questionId, guessId, correctCount, doneCount))
   }
 
   handleNextQuestion = () => {
     const {
       dispatch,
-      quiz,
+      questions,
     } = this.props
-    dispatch(fetchNewQuestion(quiz.quizId))
+
+    const {
+      quizId
+    } = questions
+
+    dispatch(fetchNewQuestion(quizId))
   }
 
   handleTab = e => {
@@ -59,6 +66,7 @@ class App extends Component {
 
   render() {
     const {
+      questions,
       quiz,
       session,
     } = this.props
@@ -73,6 +81,9 @@ class App extends Component {
       guessIsCorrect,
       question,
       quizId,
+    } = questions
+
+    const {
       quizzes,
     } = quiz
 
@@ -95,7 +106,7 @@ class App extends Component {
                 onSubmit={this.handleSelectQuiz}
               />
               <div className='wrapper-inner'>
-                <Error error={error} />
+                <Error error={quiz.error} />
               </div>
               <div className='wrapper-inner'>
                 <Link to='/login'>Log in</Link>
@@ -141,6 +152,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  questions: state.questions,
   quiz: state.quiz,
   session: state.session,
 })
