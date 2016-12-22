@@ -8,6 +8,7 @@ import {
 } from '../constants/securityConstants'
 
 const initialState = {
+  fetchingLogin: false,
   timestamp: 0,
 }
 
@@ -18,6 +19,7 @@ export default function session(state = initialState, action) {
     case LOGIN_REQUEST:
       return {
         ...state,
+        fetchingLogin: action.fetchingLogin,
         error: action.error,
         timestamp: action.timestamp,
       }
@@ -25,11 +27,13 @@ export default function session(state = initialState, action) {
       return {
         ...state,
         error: action.error,
+        fetchingLogin: action.fetchingLogin,
         timestamp: action.timestamp,
       }
     case LOGIN_RESPONSE_SUCCESS:
       return {
         ...state,
+        fetchingLogin: action.fetchingLogin,
         username: action.username,
         timestamp: action.timestamp,
       }

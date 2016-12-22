@@ -44,6 +44,7 @@ class Login extends Component {
     } = this.props
     const {
       error,
+      fetchingLogin,
       username
     } = session
     return (
@@ -57,11 +58,13 @@ class Login extends Component {
                 label='Username'
                 onInput={this.handleUsernameInput}
                 type='text'
+                disabled={fetchingLogin}
               />
               <Input 
                 label='Password'
                 onInput={this.handlePasswordInput}
                 type='password'
+                disabled={fetchingLogin}
               />
               <button className='button' type='submit'>Login</button>
             </form>

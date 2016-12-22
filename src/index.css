@@ -103,17 +103,6 @@ a:hover {
   margin-top: .5rem;
 }
 
-
-.wrapper {
-  padding: 60px 0;
-}
-
-.wrapper-inner {
-  padding: 0 5vw;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
 .button {
   font-size: 1rem;
   background: #eee;
@@ -234,12 +223,13 @@ a:hover {
     display: block;
     margin: 0;
     border: none;
-    /*padding: 0.5em 0;*/
     line-height: 1;
     border-bottom: 2px solid hsl(0, 0%, 75%);
-    /*border-radius: 5px;
-    border: 2px solid #aaa;
-    margin: 5px;*/
+}
+
+.input:disabled {
+  background-color: inherit;
+  color: #ccc;
 }
 
 .input:focus {
@@ -249,7 +239,6 @@ a:hover {
 
 input.mismatch, input:invalid {
   border-color: hsl(0, 100%, 40%);
-  /*background: #fcc;*/
 }
 
 .icon {

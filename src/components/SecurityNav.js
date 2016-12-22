@@ -32,26 +32,23 @@ class SecurityNav extends Component {
 
     return (
       <div>
-        {(loggedIn && 
-          <nav className='navbar'>
+        <nav className='navbar'>
+          <span>
+            <NavLink to='/'>Quiz</NavLink>
+          </span>
+          {(loggedIn && 
             <span>
-              <NavLink to='/'> {username} </NavLink>
-            </span>
-            <span>
+              {username}
               <NavLink to='/logout'> Logout </NavLink>
             </span>
-          </nav>
-        )|| 
-          <nav className='navbar'>
-            <span>
-              <NavLink to='/'>Home</NavLink>
-            </span>
+          ) ||
             <span>
               <NavLink to='/login'>Login</NavLink>
               <NavLink to='/create-account'>Create Account</NavLink>
             </span>
-          </nav>
-        }</div>
+          }
+        </nav>
+      </div>
     )
   }
 }

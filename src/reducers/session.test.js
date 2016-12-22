@@ -13,6 +13,7 @@ describe('session reducer', () => {
   it('should handle initial state', () => {
 
     let expected = {
+      fetchingLogin: false,
       timestamp: 0,
     }
 
@@ -31,6 +32,7 @@ describe('session reducer', () => {
 
     let expected = {
       error: undefined,
+      fetchingLogin: true,
       timestamp: 1,
     }
 
@@ -39,7 +41,7 @@ describe('session reducer', () => {
     }
 
     let action = {
-      guessId: 1,
+      fetchingLogin: true,
       timestamp: 1,
       type: LOGIN_REQUEST,
     }
@@ -56,11 +58,13 @@ describe('session reducer', () => {
         code: 20,
         message: 'Invalid login credentials',
       },
+      fetchingLogin: false,
       timestamp: 2,
     }
 
     let state = {
       timestamp: 1,
+      fetchingLogin: true,
     }
 
     let action = {
@@ -68,6 +72,7 @@ describe('session reducer', () => {
         code: 20,
         message: 'Invalid login credentials',
       },
+      fetchingLogin: false,
       timestamp: 2,
       type: LOGIN_RESPONSE_FAILURE,
     }
@@ -80,15 +85,18 @@ describe('session reducer', () => {
   it('should handle LOGIN_RESPONSE_SUCCESS action', () => {
 
     let expected = {
+      fetchingLogin: false,
       timestamp: 2,
       username: 'HatTrick',
     }
 
     let state = {
       timestamp: 1,
+      fetchingLogin: true,
     }
 
     let action = {
+      fetchingLogin: false,
       timestamp: 2,
       type: LOGIN_RESPONSE_SUCCESS,
       username: 'HatTrick',

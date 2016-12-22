@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 class Input extends Component {
   static propTypes = {
+    disabled: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     onInput: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
@@ -10,6 +11,7 @@ class Input extends Component {
 
   render() {
     const {
+      disabled,
       label,
       onInput,
       placeholder,
@@ -23,6 +25,7 @@ class Input extends Component {
           onInput={onInput}
           placeholder={placeholder}
           type={type}
+          disabled={disabled}
         />
         <svg viewBox="0 0 20 20" className="icon">
           <path d="M0 0 L10 10 L0 20"></path>

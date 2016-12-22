@@ -75,6 +75,7 @@ describe('security actions', () => {
 
     let expected = {
       timestamp: 1,
+      fetchingLogin: true,
       error: undefined,
       type: LOGIN_REQUEST,
     }
@@ -91,6 +92,7 @@ describe('security actions', () => {
         code: 20,
         message: 'Invalid login credentials',
       },
+      fetchingLogin: false,
       timestamp: 1,
       type: LOGIN_RESPONSE_FAILURE,
     }
@@ -111,6 +113,7 @@ describe('security actions', () => {
   it('loginResponseSuccess should create an action', () => {
 
     let expected = {
+      fetchingLogin: false,
       timestamp: 1,
       type: LOGIN_RESPONSE_SUCCESS,
       username: 'Username',

@@ -13,14 +13,6 @@ import {
   GET_QUIZZES_RESPONSE_FAILURE,
   GET_QUIZZES_RESPONSE_SUCCESS,
 } from '../constants/quizConstants'
-import {
-  CREATE_ACCOUNT_REQUEST,
-  CREATE_ACCOUNT_RESPONSE_FAILURE,
-  CREATE_ACCOUNT_RESPONSE_SUCCESS,
-  LOGIN_REQUEST,
-  LOGIN_RESPONSE_FAILURE,
-  LOGIN_RESPONSE_SUCCESS,
-} from '../constants/securityConstants'
 
 const initialState = {
   answers: [],
@@ -102,6 +94,5 @@ export default function quiz(state = initialState, action) {
 
     default:
       return state
-
   }
 }
