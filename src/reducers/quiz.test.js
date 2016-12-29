@@ -103,4 +103,3 @@ describe('quiz reducer', () => {
     expect(actual).toEqual(expected)
   })
 })
-

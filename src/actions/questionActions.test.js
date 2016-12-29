@@ -110,5 +110,4 @@ describe('question actions', () => {
     let actual = action;
     expect(actual).toEqual(expected)
   })
-
 })
