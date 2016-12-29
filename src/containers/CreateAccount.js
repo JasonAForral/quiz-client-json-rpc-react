@@ -129,7 +129,6 @@ class CreateAccount extends Component {
 }
 
 const mapStateToProps = state => ({
-  // quiz: state.quiz,
   session: state.session,
 })
 

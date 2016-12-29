@@ -12,19 +12,17 @@ class Navbar extends Component {
     username: PropTypes.string.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-    const expanded = false
-    this.state = {
-      expanded,
-    }
+  componentDidMount() {
+    const { 
+      dispatch,
+    } = this.props
+    // dispatch(fetchActiveSession())
   }
 
   handleLogout = e => {
     const {
       dispatch,
     } = this.props
-
     dispatch(fetchLogout(browserHistory))
   }
 
@@ -46,12 +44,12 @@ class Navbar extends Component {
               onlyActiveOnIndex={true}
               to='/'>Quiz</NavLink>
           </span>
-          {(loggedIn && 
+          {loggedIn ? 
             <span>
-              {username}
+              <NavLink> {username} </NavLink>
               <NavLink onClick={this.handleLogout}> Logout </NavLink>
             </span>
-          ) ||
+           :
             <span>
               <NavLink to='/login'>Login</NavLink>
               <NavLink to='/create-account'>Create Account</NavLink>
