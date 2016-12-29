@@ -5,6 +5,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE_FAILURE,
+  LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 import {
   createAccountRequest,
@@ -13,6 +16,9 @@ import {
   loginRequest,
   loginResponseFailure,
   loginResponseSuccess,
+  logoutRequest,
+  logoutResponseFailure,
+  logoutResponseSuccess,
 } from './securityActions'
 
 describe('security actions', () => {
@@ -76,7 +82,6 @@ describe('security actions', () => {
     let expected = {
       timestamp: 1,
       fetchingLogin: true,
-      error: undefined,
       type: LOGIN_REQUEST,
     }
 
@@ -128,6 +133,63 @@ describe('security actions', () => {
     }
 
     let actual = loginResponseSuccess(json)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('logoutRequest should create an action', () => {
+
+    let expected = {
+      timestamp: 1,
+      fetchingLogout: true,
+      type: LOGOUT_REQUEST,
+    }
+
+    let actual = logoutRequest(1);
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('logoutResponseFailure should create an action', () => {
+
+    let expected = {
+      error: {
+        code: 21,
+        message: 'Not logged in',
+      },
+      fetchingLogout: false,
+      timestamp: 1,
+      type: LOGOUT_RESPONSE_FAILURE,
+    }
+
+    let json = { 
+      error: {
+        code: 21,
+        message: 'Not logged in',
+      },
+      id: 1,
+    }
+
+    let actual = logoutResponseFailure(json)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('logoutResponseSuccess should create an action', () => {
+
+    let expected = {
+      fetchingLogout: false,
+      timestamp: 1,
+      type: LOGOUT_RESPONSE_SUCCESS,
+    }
+
+    let json = {
+      result: {},
+      id: 1,
+      type: LOGOUT_RESPONSE_SUCCESS,
+    }
+
+    let actual = logoutResponseSuccess(json)
 
     expect(actual).toEqual(expected)
   })

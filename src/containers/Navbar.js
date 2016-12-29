@@ -1,7 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-import NavLink from './NavLink'
+import { connect } from 'react-redux'
+import { IndexLink } from 'react-router'
 
-class SecurityNav extends Component {
+import NavLink from '../components/NavLink'
+
+import { fetchLogout } from '../actions/securityActions'
+
+
+class Navbar extends Component {
   static propTypes = {
     username: PropTypes.string.isRequired,
   }
@@ -14,32 +20,36 @@ class SecurityNav extends Component {
     }
   }
 
-  expandToggle = e => {
-    this.setState((prevState, props) => ({
-      expanded: !prevState.expanded,
-    }))
+  handleLogout = e => {
+    const {
+      dispatch,
+    } = this.props
+
+    dispatch(fetchLogout())
   }
 
   render() {
     const {
-      expanded,
-    } = this.state
+      session
+    } = this.props
     const {
       username
-    } = this.props
+    } = session
 
     const loggedIn = undefined !== username
 
     return (
-      <div>
+      <navbar>
         <nav className='navbar'>
           <span>
-            <NavLink to='/'>Quiz</NavLink>
+            <NavLink
+              onlyActiveOnIndex={true}
+              to='/'>Quiz</NavLink>
           </span>
           {(loggedIn && 
             <span>
               {username}
-              <NavLink to='/logout'> Logout </NavLink>
+              <NavLink onClick={this.handleLogout}> Logout </NavLink>
             </span>
           ) ||
             <span>
@@ -48,9 +58,13 @@ class SecurityNav extends Component {
             </span>
           }
         </nav>
-      </div>
+      </navbar>
     )
   }
 }
 
-export default SecurityNav
+const mapStateToProps = state => ({
+  session: state.session,
+})
+
+export default connect(mapStateToProps)(Navbar)

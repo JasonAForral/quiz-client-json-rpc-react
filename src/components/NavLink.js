@@ -3,17 +3,31 @@ import { Link } from 'react-router'
 
 class NavLink extends Component {
   static propTypes = {
+    activeClassName: PropTypes.string,
+    className: PropTypes.string,
     to: PropTypes.string.isRequired,
-  }
+    onClick: PropTypes.func,
+    onlyActiveOnIndex: PropTypes.bool,
+      }
 
   render() {
     const {
       children,
+      onClick,
+      onlyActiveOnIndex,
       to,
     } = this.props
 
     return (
-      <Link to={to} activeClassName='active-nav-link' className='nav-link'>{children}</Link>
+      <Link
+        activeClassName='active-nav-link'
+        className='nav-link'
+        onClick={onClick}
+        onlyActiveOnIndex={onlyActiveOnIndex}
+        to={to}
+      >
+        {children}
+      </Link>
     )
   }
 }

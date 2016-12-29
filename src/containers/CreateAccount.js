@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+
+import Navbar from './Navbar'
+
 import Error from '../components/Error'
 import Input from '../components/Input'
-import SecurityNav from '../components/SecurityNav'
 import { fetchCreateAccount } from '../actions/securityActions'
 
 class CreateAccount extends Component {
@@ -78,14 +80,13 @@ class CreateAccount extends Component {
     } = this.props
     const {
       error,
-      username,
     } = session
     const {
       isMismatch,
     } = this.state
     return (
       <div className='container'>
-        <SecurityNav username={username} />
+        <Navbar/>
         <div className='display'>
           <div className='dialog'>
             <h2>Create Account</h2>

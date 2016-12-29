@@ -5,10 +5,14 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE_FAILURE,
+  LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 
 const initialState = {
   fetchingLogin: false,
+  fetchingLogout: false,
   timestamp: 0,
 }
 
@@ -35,6 +39,28 @@ export default function session(state = initialState, action) {
         ...state,
         fetchingLogin: action.fetchingLogin,
         username: action.username,
+        timestamp: action.timestamp,
+      }
+
+    case LOGOUT_REQUEST:
+      return {
+        ...state,
+        fetchingLogout: action.fetchingLogout,
+        error: action.error,
+        timestamp: action.timestamp,
+      }
+    case LOGOUT_RESPONSE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        fetchingLogout: action.fetchingLogout,
+        timestamp: action.timestamp,
+      }
+    case LOGOUT_RESPONSE_SUCCESS:
+      return {
+        ...state,
+        fetchingLogout: action.fetchingLogout,
+        username: undefined,
         timestamp: action.timestamp,
       }
 

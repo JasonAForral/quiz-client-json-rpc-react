@@ -5,6 +5,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE_FAILURE,
+  LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 
 export const createAccountRequest = timestamp => ({
@@ -26,7 +29,6 @@ export const createAccountResponseSuccess = json => ({
 
 export const loginRequest = timestamp => ({
   timestamp,
-  error: undefined,
   fetchingLogin: true,
   type: LOGIN_REQUEST,
 })
@@ -102,6 +104,51 @@ export const fetchCreateAccount = (username, password, password2, email) => disp
         return dispatch(createAccountResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(createAccountResponseFailure(json))
+      }
+    })
+}
+
+export const logoutRequest = timestamp => ({
+  fetchingLogout: true,
+  timestamp,
+  type: LOGOUT_REQUEST,
+})
+
+export const logoutResponseFailure = json => ({
+  error: json.error,
+  fetchingLogout: false,
+  timestamp: json.id,
+  type: LOGOUT_RESPONSE_FAILURE,
+})
+
+export const logoutResponseSuccess = json => ({
+  fetchingLogout: false,
+  timestamp: json.id,
+  type: LOGOUT_RESPONSE_SUCCESS,
+})
+
+export const fetchLogout = () => dispatch => {
+  let now = Date.now()
+  dispatch(logoutRequest(now))
+  return fetch('api', {
+      body: JSON.stringify({
+        id: now,
+        jsonrpc: '2.0',
+        method: 'logout',
+      }),
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.hasOwnProperty('result')) {
+        return dispatch(logoutResponseSuccess(json))
+      } else if (json.hasOwnProperty('error')) {
+        return dispatch(logoutResponseFailure(json))
       }
     })
 }

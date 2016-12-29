@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+
+import Navbar from './Navbar'
+
 import Counter from '../components/Counter'
 import Error from '../components/Error'
 import QuestionForm from '../components/QuestionForm'
-import SecurityNav from '../components/SecurityNav'
 import SelectQuizForm from '../components/SelectQuizForm'
+
 import { fetchAnswerQuestion } from '../actions/answerActions'
 import { fetchNewQuestion } from '../actions/questionActions'
 import { fetchGetQuizzes } from '../actions/quizActions'
@@ -14,7 +17,6 @@ class App extends Component {
   static propTypes = {
     questions: PropTypes.object.isRequired,
     quiz: PropTypes.object.isRequired,
-    session: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
@@ -68,7 +70,6 @@ class App extends Component {
     const {
       questions,
       quiz,
-      session,
     } = this.props
 
     const {
@@ -87,17 +88,13 @@ class App extends Component {
       quizzes,
     } = quiz
 
-    const {
-      username
-    } = session
-
     const haveQuizzes = undefined !== quizzes
     const quizSelected = undefined !== quizId
 
     if (haveQuizzes && !quizSelected) {
       return (
         <div className='container'>
-        <SecurityNav username={username}/>
+        <Navbar/>
           <div className='display'>
             <div className='dialog'>
               <h2>Select a Quiz:</h2>
@@ -109,7 +106,6 @@ class App extends Component {
                 <Error error={quiz.error} />
               </div>
               <div className='wrapper-inner'>
-                <Link to='/login'>Log in</Link>
               </div>
             </div>
           </div>
@@ -123,7 +119,7 @@ class App extends Component {
 
   return (
       <div className='container'>
-        <SecurityNav username={username}/>
+        <Navbar/>
         <div className='display'>
           <div className='dialog'>
             {quizSelected && 
@@ -154,7 +150,6 @@ class App extends Component {
 const mapStateToProps = state => ({
   questions: state.questions,
   quiz: state.quiz,
-  session: state.session,
 })
 
 export default connect(mapStateToProps)(App)

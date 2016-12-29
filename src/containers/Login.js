@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+
+import Navbar from './Navbar'
+
 import Error from '../components/Error'
 import Input from '../components/Input'
-import SecurityNav from '../components/SecurityNav'
+
 import { fetchLogin } from '../actions/securityActions'
 
 class Login extends Component {
@@ -45,11 +48,10 @@ class Login extends Component {
     const {
       error,
       fetchingLogin,
-      username
     } = session
     return (
       <div className='container'>
-        <SecurityNav username={username} />
+        <Navbar/>
         <div className='display'>
           <div className='dialog'>
             <h2>Login</h2>
@@ -79,7 +81,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  // quiz: state.quiz,
   session: state.session,
 })
 

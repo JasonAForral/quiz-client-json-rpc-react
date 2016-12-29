@@ -7,6 +7,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE_FAILURE,
+  LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 
 describe('session reducer', () => {
@@ -14,6 +17,7 @@ describe('session reducer', () => {
 
     let expected = {
       fetchingLogin: false,
+      fetchingLogout: false,
       timestamp: 0,
     }
 
@@ -31,7 +35,6 @@ describe('session reducer', () => {
   it('should handle LOGIN_REQUEST action', () => {
 
     let expected = {
-      error: undefined,
       fetchingLogin: true,
       timestamp: 1,
     }
@@ -100,6 +103,85 @@ describe('session reducer', () => {
       timestamp: 2,
       type: LOGIN_RESPONSE_SUCCESS,
       username: 'HatTrick',
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  // ******** Logout Actions ***************
+
+    it('should handle LOGOUT_REQUEST action', () => {
+
+    let expected = {
+      fetchingLogout: true,
+      timestamp: 1,
+    }
+
+    let state = {
+      error: 'stuff',
+    }
+
+    let action = {
+      fetchingLogout: true,
+      timestamp: 1,
+      type: LOGOUT_REQUEST,
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle LOGOUT_RESPONSE_FAILURE action', () => {
+
+    let expected = {
+      error: {
+        code: 20,
+        message: 'Invalid login credentials',
+      },
+      fetchingLogout: false,
+      timestamp: 2,
+    }
+
+    let state = {
+      timestamp: 1,
+      fetchingLogout: true,
+    }
+
+    let action = {
+      error: {
+        code: 20,
+        message: 'Invalid login credentials',
+      },
+      fetchingLogout: false,
+      timestamp: 2,
+      type: LOGOUT_RESPONSE_FAILURE,
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle LOGOUT_RESPONSE_SUCCESS action', () => {
+
+    let expected = {
+      fetchingLogout: false,
+      timestamp: 2,
+    }
+
+    let state = {
+      timestamp: 1,
+      fetchingLogout: true,
+      username: 'HatTrick',
+    }
+
+    let action = {
+      fetchingLogout: false,
+      timestamp: 2,
+      type: LOGOUT_RESPONSE_SUCCESS,
     }
 
     let actual = session(state, action)
