@@ -37,8 +37,9 @@ class Login extends Component {
     } = this.state
     const {
       dispatch,
+      router,
     } = this.props
-    dispatch(fetchLogin(username, password))
+    dispatch(fetchLogin(username, password, router))
   }
 
   render() {

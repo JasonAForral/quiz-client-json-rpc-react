@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { IndexLink } from 'react-router'
+import { browserHistory, IndexLink, } from 'react-router'
 
 import NavLink from '../components/NavLink'
 
@@ -25,7 +25,7 @@ class Navbar extends Component {
       dispatch,
     } = this.props
 
-    dispatch(fetchLogout())
+    dispatch(fetchLogout(browserHistory))
   }
 
   render() {

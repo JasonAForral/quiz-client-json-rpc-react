@@ -47,7 +47,7 @@ export const loginResponseSuccess = json => ({
   username: json.result.username,
 })
 
-export const fetchLogin = (username, password) => dispatch => {
+export const fetchLogin = (username, password, router) => dispatch => {
   let now = Date.now()
   dispatch(loginRequest(now))
   return fetch('api', {
@@ -70,6 +70,7 @@ export const fetchLogin = (username, password) => dispatch => {
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
+        router.push('/')
         return dispatch(loginResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(loginResponseFailure(json))
@@ -127,7 +128,7 @@ export const logoutResponseSuccess = json => ({
   type: LOGOUT_RESPONSE_SUCCESS,
 })
 
-export const fetchLogout = () => dispatch => {
+export const fetchLogout = router => dispatch => {
   let now = Date.now()
   dispatch(logoutRequest(now))
   return fetch('api', {
@@ -146,6 +147,7 @@ export const fetchLogout = () => dispatch => {
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
+        router.push('/login')
         return dispatch(logoutResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(logoutResponseFailure(json))
