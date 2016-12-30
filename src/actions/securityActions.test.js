@@ -124,13 +124,15 @@ describe('security actions', () => {
   it('getActiveSessionResponseSuccess should create an action', () => {
 
     let expected = {
-      result: {},
+      username: 'Username',
       timestamp: 1,
       type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
     }
 
     let json = {
-      result: {},
+      result: {
+        username: 'Username',
+      },
       id: 1,
       type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
     }
