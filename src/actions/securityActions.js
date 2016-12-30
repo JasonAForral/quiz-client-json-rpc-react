@@ -2,6 +2,9 @@ import {
   CREATE_ACCOUNT_REQUEST,
   CREATE_ACCOUNT_RESPONSE_FAILURE,
   CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  GET_ACTIVE_SESSION_REQUEST,
+  GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+  GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
@@ -25,6 +28,23 @@ export const createAccountResponseSuccess = json => ({
   result: json.result,
   timestamp: json.id,
   type: CREATE_ACCOUNT_RESPONSE_SUCCESS,
+})
+
+export const getActiveSessionRequest = timestamp => ({
+  timestamp,
+  type: GET_ACTIVE_SESSION_REQUEST,
+})
+
+export const getActiveSessionResponseFailure = json => ({
+  error: json.error,
+  timestamp: json.id,
+  type: GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+})
+
+export const getActiveSessionResponseSuccess = json => ({
+  timestamp: json.id,
+  type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
+  username: json.result.username,
 })
 
 export const loginRequest = timestamp => ({
@@ -58,7 +78,7 @@ export const fetchLogin = (username, password, router) => dispatch => {
         params: {
           username,
           password,
-        }
+        },
       }),
       credentials: 'same-origin',
       headers: {
@@ -77,6 +97,33 @@ export const fetchLogin = (username, password, router) => dispatch => {
       }
     })
 }
+
+export const fetchGetActiveSession = () => dispatch => {
+  let now = Date.now()
+  dispatch(getActiveSessionRequest(now))
+  return fetch('api', {
+      body: JSON.stringify({
+        id: now,
+        jsonrpc: '2.0',
+        method: 'getActiveSession',
+      }),
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.hasOwnProperty('result')) {
+        return dispatch(getActiveSessionResponseSuccess(json))
+      } else if (json.hasOwnProperty('error')) {
+        return dispatch(getActiveSessionResponseFailure(json))
+      }
+    })
+}
+
 
 export const fetchCreateAccount = (username, password, password2, email) => dispatch => {
   let now = Date.now()

@@ -4,6 +4,9 @@ import {
   CREATE_ACCOUNT_REQUEST,
   CREATE_ACCOUNT_RESPONSE_FAILURE,
   CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  GET_ACTIVE_SESSION_REQUEST,
+  GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+  GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
@@ -18,6 +21,7 @@ describe('session reducer', () => {
     let expected = {
       fetchingLogin: false,
       fetchingLogout: false,
+      fetchingGetActiveSession: false,
       timestamp: 0,
     }
 
@@ -253,6 +257,84 @@ describe('session reducer', () => {
     let action = {
       timestamp: 2,
       type: CREATE_ACCOUNT_RESPONSE_SUCCESS,
+      username: 'Username',
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  // *********** Get Active Session ********
+
+  it('should handle GET_ACTIVE_SESSION_REQUEST action', () => {
+
+    let expected = {
+      fetchingGetActiveSession: true,
+      timestamp: 2,
+    }
+
+    let state = {
+      timestamp: 1,
+    }
+
+    let action = {
+      fetchingGetActiveSession: true,
+      timestamp: 2,
+      type: GET_ACTIVE_SESSION_REQUEST,
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle GET_ACTIVE_SESSION_RESPONSE_FAILURE action', () => {
+
+    let expected = {
+      error: {
+        code: 30,
+        message: 'Username Exists',
+      },
+      fetchingGetActiveSession: false,
+      timestamp: 1,
+    }
+
+    let state = {
+      timestamp: 0,
+    }
+
+    let action = {
+      error: {
+        code: 30,
+        message: 'Username Exists',
+      },
+      fetchingGetActiveSession: false,
+      timestamp: 1,
+      type: GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should handle GET_ACTIVE_SESSION_RESPONSE_SUCCESS action', () => {
+
+    let expected = {
+      fetchingGetActiveSession: false,
+      timestamp: 2,
+      username: 'Username',
+    }
+
+    let state = {
+      timestamp: 1,
+    }
+
+    let action = {
+      fetchingGetActiveSession: false,
+      timestamp: 2,
+      type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
       username: 'Username',
     }
 

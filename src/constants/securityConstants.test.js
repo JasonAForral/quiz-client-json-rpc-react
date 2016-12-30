@@ -2,6 +2,9 @@ import {
   CREATE_ACCOUNT_REQUEST,
   CREATE_ACCOUNT_RESPONSE_FAILURE,
   CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  GET_ACTIVE_SESSION_REQUEST,
+  GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+  GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
@@ -65,6 +68,8 @@ describe('security constants', () => {
     expect(actual).toEqual(expected)
   })
 
+  // logout
+
   it('LOGOUT_REQUEST should not be undefined', () => {
 
     let expected = true
@@ -88,6 +93,35 @@ describe('security constants', () => {
     let expected = true
 
     let actual = undefined !== LOGOUT_RESPONSE_SUCCESS
+
+    expect(actual).toEqual(expected)
+  })
+
+  // Get active session
+
+  it('GET_ACTIVE_SESSION_REQUEST should not be undefined', () => {
+
+    let expected = true
+
+    let actual = undefined !== GET_ACTIVE_SESSION_REQUEST
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('GET_ACTIVE_SESSION_RESPONSE_FAILURE should not be undefined', () => {
+
+    let expected = true
+
+    let actual = undefined !== GET_ACTIVE_SESSION_RESPONSE_FAILURE
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('GET_ACTIVE_SESSION_RESPONSE_SUCCESS should not be undefined', () => {
+
+    let expected = true
+
+    let actual = undefined !== GET_ACTIVE_SESSION_RESPONSE_SUCCESS
 
     expect(actual).toEqual(expected)
   })

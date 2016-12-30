@@ -2,6 +2,9 @@ import {
   CREATE_ACCOUNT_REQUEST,
   CREATE_ACCOUNT_RESPONSE_FAILURE,
   CREATE_ACCOUNT_RESPONSE_SUCCESS,
+  GET_ACTIVE_SESSION_REQUEST,
+  GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+  GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_RESPONSE_FAILURE,
   LOGIN_RESPONSE_SUCCESS,
@@ -13,6 +16,9 @@ import {
   createAccountRequest,
   createAccountResponseFailure,
   createAccountResponseSuccess,
+  getActiveSessionRequest,
+  getActiveSessionResponseFailure,
+  getActiveSessionResponseSuccess,
   loginRequest,
   loginResponseFailure,
   loginResponseSuccess,
@@ -73,6 +79,63 @@ describe('security actions', () => {
     }
 
     let actual = createAccountResponseSuccess(json)
+
+    expect(actual).toEqual(expected)
+  })
+
+  // get active session
+
+  it('getActiveSessionRequest should create an action', () => {
+
+    let expected = {
+      timestamp: 1,
+      type: GET_ACTIVE_SESSION_REQUEST,
+    }
+
+    let actual = getActiveSessionRequest(1);
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('getActiveSessionResponseFailure should create an action', () => {
+
+    let expected = {
+      error: {
+        code: 10,
+        message: 'Username exists',
+      },
+      timestamp: 1,
+      type: GET_ACTIVE_SESSION_RESPONSE_FAILURE,
+    }
+
+    let json = { 
+      error: {
+        code: 10,
+        message: 'Username exists',
+      },
+      id: 1,
+    }
+
+    let actual = getActiveSessionResponseFailure(json)
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('getActiveSessionResponseSuccess should create an action', () => {
+
+    let expected = {
+      result: {},
+      timestamp: 1,
+      type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
+    }
+
+    let json = {
+      result: {},
+      id: 1,
+      type: GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
+    }
+
+    let actual = getActiveSessionResponseSuccess(json)
 
     expect(actual).toEqual(expected)
   })

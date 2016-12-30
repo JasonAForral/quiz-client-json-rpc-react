@@ -4,8 +4,7 @@ import { browserHistory, IndexLink, } from 'react-router'
 
 import NavLink from '../components/NavLink'
 
-import { fetchLogout } from '../actions/securityActions'
-
+import { fetchLogout, fetchGetActiveSession } from '../actions/securityActions'
 
 class Navbar extends Component {
   static propTypes = {
@@ -16,7 +15,8 @@ class Navbar extends Component {
     const { 
       dispatch,
     } = this.props
-    // dispatch(fetchActiveSession())
+    // get active session
+    dispatch(fetchGetActiveSession())
   }
 
   handleLogout = e => {
