@@ -46,7 +46,7 @@ class Navbar extends Component {
           </span>
           {loggedIn ? 
             <span>
-              <NavLink> {username} </NavLink>
+              <NavLink to='/profile'> {username} </NavLink>
               <NavLink onClick={this.handleLogout}> Logout </NavLink>
             </span>
            :

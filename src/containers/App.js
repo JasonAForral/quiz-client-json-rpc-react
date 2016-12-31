@@ -101,11 +101,7 @@ class App extends Component {
                 quizzes={quizzes}
                 onSubmit={this.handleSelectQuiz}
               />
-              <div className='wrapper-inner'>
-                <Error error={quiz.error} />
-              </div>
-              <div className='wrapper-inner'>
-              </div>
+              <Error error={quiz.error} />
             </div>
           </div>
         </div>

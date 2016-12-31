@@ -101,8 +101,8 @@ describe('security actions', () => {
 
     let expected = {
       error: {
-        code: 10,
-        message: 'Username exists',
+        code: 101,
+        message: 'User not found',
       },
       timestamp: 1,
       type: GET_ACTIVE_SESSION_RESPONSE_FAILURE,
@@ -110,8 +110,8 @@ describe('security actions', () => {
 
     let json = { 
       error: {
-        code: 10,
-        message: 'Username exists',
+        code: 101,
+        message: 'User not found',
       },
       id: 1,
     }
@@ -142,6 +142,8 @@ describe('security actions', () => {
     expect(actual).toEqual(expected)
   })
 
+  // login
+
   it('loginRequest should create an action', () => {
 
     let expected = {
@@ -159,8 +161,8 @@ describe('security actions', () => {
 
     let expected = {
       error: {
-        code: 20,
-        message: 'Invalid login credentials',
+        code: 101,
+        message: 'User not found',
       },
       fetchingLogin: false,
       timestamp: 1,
@@ -169,8 +171,8 @@ describe('security actions', () => {
 
     let json = { 
       error: {
-        code: 20,
-        message: 'Invalid login credentials',
+        code: 101,
+        message: 'User not found',
       },
       id: 1,
     }

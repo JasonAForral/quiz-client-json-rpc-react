@@ -12,11 +12,17 @@ import {
   LOGOUT_RESPONSE_FAILURE,
   LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
+import {
+  GET_SESSION_INFO_REQUEST,
+  GET_SESSION_INFO_RESPONSE_FAILURE,
+  GET_SESSION_INFO_RESPONSE_SUCCESS,
+} from '../constants/sessionConstants'
 
 const initialState = {
   fetchingLogin: false,
   fetchingLogout: false,
   fetchingGetActiveSession: false,
+  fetchingGetSessionInfo: false,
   timestamp: 0,
 }
 
@@ -30,6 +36,7 @@ export default function session(state = initialState, action) {
         error: undefined,
         timestamp: action.timestamp,
       }
+
     case GET_ACTIVE_SESSION_RESPONSE_FAILURE:
       return {
         ...state,
@@ -37,11 +44,37 @@ export default function session(state = initialState, action) {
         fetchingGetActiveSession: action.fetchingGetActiveSession,
         timestamp: action.timestamp,
       }
+
     case GET_ACTIVE_SESSION_RESPONSE_SUCCESS:
-      console.log(action.username)
       return {
         ...state,
         fetchingGetActiveSession: action.fetchingGetActiveSession,
+        username: action.username,
+        timestamp: action.timestamp,
+      }
+
+    case GET_SESSION_INFO_REQUEST:
+      return {
+        ...state,
+        fetchingGetSessionInfo: action.fetchingGetSessionInfo,
+        error: undefined,
+        timestamp: action.timestamp,
+      }
+
+    case GET_SESSION_INFO_RESPONSE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        fetchingGetSessionInfo: action.fetchingGetSessionInfo,
+        timestamp: action.timestamp,
+      }
+
+    case GET_SESSION_INFO_RESPONSE_SUCCESS:
+      return {
+        ...state,
+        email: action.email,
+        fetchingGetSessionInfo: action.fetchingGetSessionInfo,
+        isActive: action.isActive,
         username: action.username,
         timestamp: action.timestamp,
       }

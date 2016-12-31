@@ -71,9 +71,7 @@ class Login extends Component {
               />
               <button className='button' type='submit'>Login</button>
             </form>
-            <div>
-              <Error error={error} />
-            </div>
+            <Error error={error} />
           </div>
         </div>
       </div>

@@ -89,6 +89,7 @@ a:hover {
 }
 
 .active-nav-link {
+  color: #fff;
   background: var(--bg-color);
 }
 

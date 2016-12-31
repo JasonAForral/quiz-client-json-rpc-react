@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 
 import Navbar from './Navbar'
 
-//import { fetchUserInfo } from '../actions/sessionActions'
+import Error from '../components/Error'
+
+import { fetchGetSessionInfo } from '../actions/sessionActions'
 
 class Profile extends Component {
   componentDidMount() {
     const { 
       dispatch,
     } = this.props
-    // dispatch(fetchUserInfo())
+    dispatch(fetchGetSessionInfo())
   }
 
   render() {
@@ -18,14 +20,22 @@ class Profile extends Component {
       session,
     } = this.props
     const {
+      email,
       error,
-      fetchingLogin,
+      fetchingSessionInfo,
+      isActive,
+      username,
     } = session
     return (
       <div className='container'>
         <Navbar/>
         <div className='display'>
           <div className='dialog'>
+          <h2>{username}</h2>
+          Current Email address: {email}
+          <br/>
+          Active: {isActive ? 'yes' : 'no'}
+          <Error error={error} />
           </div>
         </div>
       </div>
@@ -35,7 +45,6 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
   session: state.session,
-  userInfo: state.userInfo,
 })
 
 export default connect(mapStateToProps)(Profile)

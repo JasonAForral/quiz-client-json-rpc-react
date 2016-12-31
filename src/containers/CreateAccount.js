@@ -116,9 +116,7 @@ class CreateAccount extends Component {
                 type='email'
               />
               <button className='button' type='submit'>Create Account</button>
-              <div>
-                  <Error error={error} />
-              </div>
+              <Error error={error} />
             </form>
           </div>
         </div>
