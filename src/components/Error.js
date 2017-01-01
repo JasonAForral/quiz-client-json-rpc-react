@@ -15,6 +15,9 @@ class Error extends Component {
         <p className='error-box'>
           {error.message}
         </p>
+        <p>
+          {error.data}
+        </p>
       </div>
     )
   }

@@ -23,7 +23,6 @@ class Profile extends Component {
       email,
       error,
       fetchingSessionInfo,
-      isActive,
       username,
     } = session
     return (
@@ -34,7 +33,6 @@ class Profile extends Component {
           <h2>{username}</h2>
           Current Email address: {email}
           <br/>
-          Active: {isActive ? 'yes' : 'no'}
           <Error error={error} />
           </div>
         </div>

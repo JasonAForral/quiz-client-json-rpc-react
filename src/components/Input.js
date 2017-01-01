@@ -4,6 +4,7 @@ class Input extends Component {
   static propTypes = {
     disabled: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
+    minLength: PropTypes.bool.isRequired,
     onInput: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
@@ -13,6 +14,7 @@ class Input extends Component {
     const {
       disabled,
       label,
+      minLength,
       onInput,
       placeholder,
       type,
@@ -22,6 +24,7 @@ class Input extends Component {
       <label className='label'>
         <input
           className='input'
+          minLength={minLength}
           onInput={onInput}
           placeholder={placeholder}
           type={type}

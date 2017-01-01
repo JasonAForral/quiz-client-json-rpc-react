@@ -90,7 +90,7 @@ export const fetchLogin = (username, password, router) => dispatch => {
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
-        router.push('/')
+        router.push('/profile')
         return dispatch(loginResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(loginResponseFailure(json))
@@ -125,7 +125,7 @@ export const fetchGetActiveSession = () => dispatch => {
 }
 
 
-export const fetchCreateAccount = (username, password, password2, email) => dispatch => {
+export const fetchCreateAccount = (username, password, password2, email, router) => dispatch => {
   let now = Date.now()
   dispatch(createAccountRequest(now))
   return fetch('api', {
@@ -149,6 +149,7 @@ export const fetchCreateAccount = (username, password, password2, email) => disp
     .then(response => response.json())
     .then(json => {
       if (json.hasOwnProperty('result')) {
+        router.push('/login')
         return dispatch(createAccountResponseSuccess(json))
       } else if (json.hasOwnProperty('error')) {
         return dispatch(createAccountResponseFailure(json))

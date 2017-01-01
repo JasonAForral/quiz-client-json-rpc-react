@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 
 import Navbar from './Navbar'
 
@@ -66,8 +67,7 @@ class CreateAccount extends Component {
       return
     }
 
-    console.log('send')
-    dispatch(fetchCreateAccount(username, password, password2, email))
+    dispatch(fetchCreateAccount(username, password, password2, email, browserHistory))
   }
 
   getRetypeClass(isMismatch) {
@@ -93,22 +93,25 @@ class CreateAccount extends Component {
             <form onSubmit={this.handleCreateAccount} className='form'>
               <Input 
                 label='Username'
+                minLength={4}
                 onInput={this.handleUsernameInput}
                 type='text'
               />
               <Input 
                 label='Password'
+                minLength={8}
                 onInput={this.handlePasswordInput}
                 type='password'
               />
               <Input 
                 label='Retype Password'
+                minLength={8}
                 onInput={this.handlePassword2Input}
                 type='password'
               />
               {isMismatch && <div
                 className='input-error'
-              >Passwords do not match!
+              >Passwords do not match.
               </div>}
               <Input 
                 label='Email Address'
@@ -116,8 +119,8 @@ class CreateAccount extends Component {
                 type='email'
               />
               <button className='button' type='submit'>Create Account</button>
-              <Error error={error} />
             </form>
+            <Error error={error} />
           </div>
         </div>
       </div>
