@@ -7,6 +7,7 @@ import Error from '../components/Error'
 import Input from '../components/Input'
 
 import { fetchLogin } from '../actions/securityActions'
+import { clearError } from '../actions/sessionActions'
 
 class Login extends Component {
   constructor(props){
@@ -18,12 +19,14 @@ class Login extends Component {
   }
 
   handleUsernameInput = e => {
+    this.props.dispatch(clearError())
     this.setState({
       username: e.target.value
     })
   }
 
   handlePasswordInput = e => {
+    this.props.dispatch(clearError())
     this.setState({
       password: e.target.value
     })
@@ -39,6 +42,7 @@ class Login extends Component {
       dispatch,
       router,
     } = this.props
+    dispatch(clearError())
     dispatch(fetchLogin(username, password, router))
   }
 

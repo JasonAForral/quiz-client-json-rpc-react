@@ -37,25 +37,23 @@ class Navbar extends Component {
     const loggedIn = undefined !== username
 
     return (
-      <navbar>
-        <nav className='navbar'>
+      <navbar className='navbar'>
+        <span>
+          <NavLink
+            onlyActiveOnIndex={true}
+            to='/'>Quiz</NavLink>
+        </span>
+        {loggedIn ? 
           <span>
-            <NavLink
-              onlyActiveOnIndex={true}
-              to='/'>Quiz</NavLink>
+            <NavLink to='/profile'> {username} </NavLink>
+            <NavLink onClick={this.handleLogout}> Logout </NavLink>
           </span>
-          {loggedIn ? 
-            <span>
-              <NavLink to='/profile'> {username} </NavLink>
-              <NavLink onClick={this.handleLogout}> Logout </NavLink>
-            </span>
-           :
-            <span>
-              <NavLink to='/login'>Login</NavLink>
-              <NavLink to='/create-account'>Create Account</NavLink>
-            </span>
-          }
-        </nav>
+          :
+          <span>
+            <NavLink to='/login'>Login</NavLink>
+            <NavLink to='/create-account'>Create Account</NavLink>
+          </span>
+        }
       </navbar>
     )
   }

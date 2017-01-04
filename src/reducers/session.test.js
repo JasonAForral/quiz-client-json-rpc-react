@@ -15,6 +15,7 @@ import {
   LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 import {
+  CLEAR_ERROR,
   GET_SESSION_INFO_REQUEST,
   GET_SESSION_INFO_RESPONSE_FAILURE,
   GET_SESSION_INFO_RESPONSE_SUCCESS,
@@ -40,6 +41,28 @@ describe('session reducer', () => {
     expect(actual).toEqual(expected)
   })
 
+  // Clear Error ***
+
+  it('should handle LOGIN_REQUEST action', () => {
+
+    let expected = {
+      timestamp: 1,
+    }
+
+    let state = {
+      error: 'stuff',
+    }
+
+    let action = {
+      timestamp: 1,
+      type: CLEAR_ERROR,
+    }
+
+    let actual = session(state, action)
+
+    expect(actual).toEqual(expected)
+  })
+
   // Login Actions ****************
 
   it('should handle LOGIN_REQUEST action', () => {
@@ -50,7 +73,8 @@ describe('session reducer', () => {
     }
 
     let state = {
-      error: 'stuff',
+      timestamp: 0,
+      fetchingLogin: false,
     }
 
     let action = {
@@ -130,7 +154,8 @@ describe('session reducer', () => {
     }
 
     let state = {
-      error: 'stuff',
+      fetchingLogout: false,
+      timestamp: 0,
     }
 
     let action = {

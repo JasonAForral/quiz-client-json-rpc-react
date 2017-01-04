@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERROR,
   // GET_ACTIVE_SESSION_REQUEST,
   // GET_ACTIVE_SESSION_RESPONSE_FAILURE,
   // GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
@@ -7,6 +8,7 @@ import {
   GET_SESSION_INFO_RESPONSE_SUCCESS,
 } from '../constants/sessionConstants'
 import {
+  clearError,
   // getActiveSessionRequest,
   // getActiveSessionResponseFailure,
   // getActiveSessionResponseSuccess,
@@ -136,5 +138,16 @@ describe('session actions', () => {
 
     expect(actual).toEqual(expected)
   })
-  
+
+  it('clearError should create an action', () => {
+
+    let expected = {
+      timestamp: 1,
+      type: CLEAR_ERROR,
+    }
+
+    let actual = clearError(1);
+
+    expect(actual).toEqual(expected)
+  })
 })

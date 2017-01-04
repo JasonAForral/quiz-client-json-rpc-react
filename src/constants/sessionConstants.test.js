@@ -2,12 +2,22 @@ import {
   // GET_ACTIVE_SESSION_REQUEST,
   // GET_ACTIVE_SESSION_RESPONSE_FAILURE,
   // GET_ACTIVE_SESSION_RESPONSE_SUCCESS,
+  CLEAR_ERROR,
   GET_SESSION_INFO_REQUEST,
   GET_SESSION_INFO_RESPONSE_FAILURE,
   GET_SESSION_INFO_RESPONSE_SUCCESS,
 } from './sessionConstants'
 
 describe('session constants', () => {
+
+  it('CLEAR_ERROR should not be undefined', () => {
+
+    let expected = true
+
+    let actual = undefined !== CLEAR_ERROR
+
+    expect(actual).toEqual(expected)
+  })
 
   // // Get active session
 

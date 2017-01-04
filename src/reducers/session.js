@@ -13,6 +13,7 @@ import {
   LOGOUT_RESPONSE_SUCCESS,
 } from '../constants/securityConstants'
 import {
+  CLEAR_ERROR,
   GET_SESSION_INFO_REQUEST,
   GET_SESSION_INFO_RESPONSE_FAILURE,
   GET_SESSION_INFO_RESPONSE_SUCCESS,
@@ -29,11 +30,17 @@ const initialState = {
 export default function session(state = initialState, action) {
   switch (action.type) {
 
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: undefined,
+        timestamp: action.timestamp,
+      }
+
     case GET_ACTIVE_SESSION_REQUEST:
       return {
         ...state,
         fetchingGetActiveSession: action.fetchingGetActiveSession,
-        error: undefined,
         timestamp: action.timestamp,
       }
 
@@ -57,7 +64,6 @@ export default function session(state = initialState, action) {
       return {
         ...state,
         fetchingGetSessionInfo: action.fetchingGetSessionInfo,
-        error: undefined,
         timestamp: action.timestamp,
       }
 
@@ -83,7 +89,6 @@ export default function session(state = initialState, action) {
       return {
         ...state,
         fetchingLogin: action.fetchingLogin,
-        error: undefined,
         timestamp: action.timestamp,
       }
     case LOGIN_RESPONSE_FAILURE:
@@ -105,7 +110,6 @@ export default function session(state = initialState, action) {
       return {
         ...state,
         fetchingLogout: action.fetchingLogout,
-        error: undefined,
         timestamp: action.timestamp,
       }
     case LOGOUT_RESPONSE_FAILURE:

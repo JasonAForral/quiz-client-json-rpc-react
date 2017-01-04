@@ -7,6 +7,7 @@ import Navbar from './Navbar'
 import Error from '../components/Error'
 import Input from '../components/Input'
 import { fetchCreateAccount } from '../actions/securityActions'
+import { clearError } from '../actions/sessionActions'
 
 class CreateAccount extends Component {
   constructor(props){
@@ -21,12 +22,14 @@ class CreateAccount extends Component {
   }
 
   handleUsernameInput = e => {
+    this.props.dispatch(clearError())
     this.setState({
       username: e.target.value
     })
   }
 
   handlePasswordInput = e => {
+    this.props.dispatch(clearError())
     this.setState({
       password: e.target.value,
       isMismatch: false,
@@ -34,6 +37,7 @@ class CreateAccount extends Component {
   }
 
   handlePassword2Input = e => {
+    this.props.dispatch(clearError())
     this.setState({
       password2: e.target.value,
       isMismatch: false,
@@ -41,6 +45,7 @@ class CreateAccount extends Component {
   }
 
   handleEmailInput = e => {
+    this.props.dispatch(clearError())
     this.setState({
       email: e.target.value
     })
@@ -67,6 +72,7 @@ class CreateAccount extends Component {
       return
     }
 
+    dispatch(clearError())
     dispatch(fetchCreateAccount(username, password, password2, email, browserHistory))
   }
 
